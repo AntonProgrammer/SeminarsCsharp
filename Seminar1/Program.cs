@@ -89,3 +89,186 @@ while(index <= Chislo)
 }
 */
 //==================================================================================================================
+// Работа в гурппах семинар 2
+//Задача
+/*
+int number = new Random().Next(100, 999);
+Console.WriteLine(number);
+
+//Решение 1
+int newNumber = ((number / 100) * 10) + (number % 10);
+Console.WriteLine(newNumber);
+
+// Решение 2
+string newNumber1 = Convert.ToString((number / 100));
+Console.WriteLine(newNumber1);
+string newNumber2 = Convert.ToString(number % 10);
+Console.WriteLine(newNumber2);
+
+string numberRezult = newNumber1 + newNumber2;
+
+Console.WriteLine(numberRezult);
+*/
+
+//Задача
+/*
+int n1 = new Random().Next(1, 1000);
+int n2 = new Random().Next(2, 4);
+int temp = n1;
+
+if(n1 < n2)
+{
+    n1 = n2;
+    n2 = temp;
+}
+
+if (n1 % n2 == 0)
+{
+    Console.WriteLine($"Число {n1} число кратно {n2}");
+}
+else
+{
+    Console.WriteLine($"Число {n1} не кратно {n2}");
+}
+*/
+//================================================================================================================
+// Задача 10: Напишите программу, которая принимает на вход трёхзначное число и на выходе показывает вторую цифру этого числа.
+
+// Решение с методом
+/*void MetodVivodaVtoroiCifriTrehznachnogoChisla (int Chislo)
+{
+    if(Chislo>=100 && Chislo<=999)
+    {
+        int OstatokDelenie = (Chislo % 100);
+        int VtorayaCifra = (OstatokDelenie / 10);
+
+        Console.WriteLine($"Вторя цифра трёхзначного числа равна {VtorayaCifra}");
+    }
+    else
+    {
+        Console.WriteLine("Вы ввели не трёхзначное число");
+    }
+}
+
+Console.WriteLine("Введител трёхзначное число");
+int Chislo = Convert.ToInt32(Console.ReadLine());
+
+MetodVivodaVtoroiCifriTrehznachnogoChisla(Chislo);
+*/
+
+
+
+// Решение без метода
+/*
+Console.WriteLine("Введител трёхзначное число");
+int Chislo = Convert.ToInt32(Console.ReadLine());
+
+if(Chislo>=100 && Chislo<=999)
+{
+    int OstatokDelenie = (Chislo % 100);
+    int VtorayaCifra = (OstatokDelenie / 10);
+
+    Console.WriteLine($"Вторя цифра трёхзначного числа равна {VtorayaCifra}");
+}
+else
+{
+    Console.WriteLine("Вы ввели не трёхзначное число");
+}
+*/
+
+//===============================================================================================================
+// Задача 13: Напишите программу, которая выводит третью цифру заданного числа или сообщает, что третьей цифры нет.
+
+/*
+int MetodPodschetaKolichestvaCifrChisla(int Chislo)
+{
+    int KolichestvoCifr = 0;
+
+    while(Chislo > 0)
+    {
+        Chislo = Chislo / 10;
+        KolichestvoCifr = KolichestvoCifr + 1;
+    }
+
+    return KolichestvoCifr;
+}
+
+Console.WriteLine("Введите число");
+int Chislo = Convert.ToInt32(Console.ReadLine());
+int KolichestvoCifr = MetodPodschetaKolichestvaCifrChisla(Chislo);
+Console.WriteLine($"кол цифр {KolichestvoCifr}");
+int TretiyaCifra = 0;
+
+if(KolichestvoCifr == 3)
+{
+    TretiyaCifra = Chislo % 10;
+
+    Console.WriteLine($"Третья цифра введённого числа {TretiyaCifra}");
+}
+else if(KolichestvoCifr > 3)
+    {
+        while(KolichestvoCifr > 3)
+        {
+            Chislo = Chislo / 10;
+            KolichestvoCifr = KolichestvoCifr - 1;
+        }
+
+        TretiyaCifra = Chislo % 10;
+
+        Console.WriteLine($"Третья цифра введённого числа {TretiyaCifra}");
+    }
+    else
+    {
+        Console.WriteLine("Третьей цифры нет у введённого числа");
+    }
+*/
+//==========================================================================================================
+// Задача 15: Напишите программу, которая принимает на вход цифру, обозначающую день недели, и проверяет, является ли этот день выходным.
+
+/*Console.WriteLine("Введите номер дня недели");
+int NomerNedeli = Convert.ToInt32(Console.ReadLine());
+
+switch(NomerNedeli)
+{
+    case 1:
+    {
+        Console.WriteLine("Нет... понедельник не выходной");
+        break;
+    }
+    case 2:
+    {
+        Console.WriteLine("Нет... вторник не выходной");
+        break;
+    }
+    case 3:
+    {
+        Console.WriteLine("Нет... среда не выходной");
+        break;
+    }
+    case 4:
+    {
+        Console.WriteLine("Нет... четверг не выходной");
+        break;
+    }
+    case 5:
+    {
+        Console.WriteLine("Нет... пятница не выходной");
+        break;
+    }
+    case 6:
+    {
+        Console.WriteLine("Да... суббота выходной");
+        break;
+    }
+    case 7:
+    {
+        Console.WriteLine("Да... воскресенье выходной");
+        break;
+    }
+    default:
+    {
+        Console.WriteLine("Такого номера дня недели нет");
+        break;
+    }
+}
+*/
