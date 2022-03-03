@@ -272,3 +272,189 @@ switch(NomerNedeli)
     }
 }
 */
+//=====================================================================================================
+// работа на семинаре 3.
+// Задача. Написать программу, которая принимает на вход координаты точки (X и Y), причём X ≠ 0 и Y ≠ 0 и выдаёт номер четверти плоскости, в которой находится эта точка.
+/*
+int GetQuart(double xPoint, double yPoint)
+{
+    if(xPoint > 0 && yPoint > 0) return 1;
+    if(xPoint < 0 && yPoint > 0) return 2;
+    if(xPoint < 0 && yPoint < 0) return 3;
+    if(xPoint > 0 && yPoint < 0) return 4;
+    return 0;
+}
+double x, y;
+int quartNum;
+Console.Write("Input X: ");
+x = Convert.ToDouble(Console.ReadLine());
+Console.Write("Input Y: ");
+y = Convert.ToDouble(Console.ReadLine());
+
+quartNum = GetQuart(x, y);
+if(quartNum == 0) Console.WriteLine("Нельзя однозначно определить четверть");
+else Console.WriteLine("Данная точка находится в " + quartNum + " четверти");
+*/
+//========================================================================================
+// Задача. Написать программу, которая принимает на вход номер четверти и выводит на экран диапазон координат, доступных в этой четверти
+
+/*if(numChetvert == 1) Console.WriteLine("Можно ввести х > 0 и у > 0");
+    if(numChetvert == 2) Console.WriteLine("Можно ввести х > 0 и у < 0");
+    if(numChetvert == 3) Console.WriteLine("Можно ввести х < 0 и у < 0");
+    if(numChetvert == 4) Console.WriteLine("Можно ввести х < 0 и у > 0");
+    if()
+
+*/
+/*
+void NomerChetverti(int numChetvert)
+{
+    switch(numChetvert)
+    {
+        case 1:
+        {
+            Console.WriteLine("Можно ввести х > 0 и у > 0");
+            break;
+        }
+        case 2:
+        {
+            Console.WriteLine("Можно ввести х < 0 и у > 0");
+            break;
+        }
+        case 3:
+        {
+            Console.WriteLine("Можно ввести х < 0 и у < 0");
+            break;
+        }
+        case 4:
+        {
+            Console.WriteLine("Можно ввести х > 0 и у < 0");
+            break;
+        }
+        default:
+        {
+            Console.WriteLine("Не пиши ерунды");
+            break;
+        }
+    }    
+}
+
+Console.WriteLine("Введите номер четверти");
+int Chetvert = Convert.ToInt32(Console.ReadLine());
+NomerChetverti(Chetvert);
+*/
+//============================================================================================================
+// Задача. Написать программу, принимающую на вход координаты двух точек и определяющую расстояние между ними.
+/*
+int MetodRasstoyaniyaMegduDvumyaTochkami(int Ax, int Ay, int )
+
+
+Console.WriteLine("Введите координаты x и y первой точки");
+int koordinataAx =Convert.ToInt32(Console.ReadLine());
+int koordinataAy =Convert.ToInt32(Console.ReadLine());
+
+Console.WriteLine("Введите координаты x и y второй точки");
+int koordinataBx =Convert.ToInt32(Console.ReadLine());
+int koordinataBy =Convert.ToInt32(Console.ReadLine());
+*/
+// Решение с преподавателем
+/*
+double GetDistance(double x1, double y1, double x2, double y2)
+{
+    double xDistance = x2 - x1;
+    double yDistance = y2 - y1;
+    double rusult = Math.Sqrt(Math.Pow(xDistance,2) + Math.Pow(yDistance,2));
+    return rusult;
+}
+
+
+double xA, yA, xB, yB;
+//double distance;
+
+Console.Write("Input X of point A: ");
+xA = Convert.ToDouble(Console.ReadLine());
+Console.Write("Input Y of point A: ");
+yA = Convert.ToDouble(Console.ReadLine());
+Console.Write("Input X of point B: ");
+xB = Convert.ToDouble(Console.ReadLine());
+Console.Write("Input Y of point B: ");
+yB = Convert.ToDouble(Console.ReadLine());
+
+Console.WriteLine(GetDistance(xA, yA, xB, yB));
+*/
+//======================================================================================================
+// Задачи ДЗ с семинара 3
+
+// Задача 19. Напишите программу, которая принимает на вход пятизначное число и проверяет, является ли оно палиндромом.
+/*
+Console.WriteLine("Введите пятизначное число");
+int Chislo = Convert.ToInt32(Console.ReadLine());
+int CifraCpavа = 0;
+int CifraClevа = 0;
+
+CifraCpavа = Chislo % 10;
+CifraClevа = Chislo / 10000;
+if(CifraCpavа == CifraClevа)
+{
+    CifraCpavа = (Chislo % 100) / 10;
+    CifraClevа = (Chislo / 1000) % 10;
+    if(CifraCpavа == CifraClevа)
+    {
+        Console.WriteLine("Введённое число является полиндромом");
+    }
+    else
+    {
+        Console.WriteLine("Введённое число не является полиндромом");
+    }
+}
+else
+{
+    Console.WriteLine("Введённое число не является полиндромом");
+}
+*/
+//========================================================================================================
+// Задача 21. Напишите программу, которая принимает на вход координаты двух точек и находит расстояние между ними в 3D пространстве.
+// ввести 001222 для проверки будет 3
+/*
+double RasstoyanieMegduDvumyaTochkami3D(double x1, double y1, double z1, double x2, double y2, double z2)
+{
+    double xRasstoyanie = x2 - x1;
+    double yRasstoyanie = y2 - y1;
+    double zRasstoyanie = z2 - z1;
+    double ruzultat = Math.Sqrt(Math.Pow(xRasstoyanie,2) + Math.Pow(yRasstoyanie,2) + Math.Pow(zRasstoyanie,2));
+    return ruzultat;
+}
+
+double xA, yA, zA, xB, yB, zB;
+
+Console.Write("Введите координату х точки A ");
+xA = Convert.ToDouble(Console.ReadLine());
+Console.Write("Введите координату y точки A ");
+yA = Convert.ToDouble(Console.ReadLine());
+Console.Write("Введите координату z точки A ");
+zA = Convert.ToDouble(Console.ReadLine());
+Console.Write("Введите координату х точки B ");
+xB = Convert.ToDouble(Console.ReadLine());
+Console.Write("Введите координату y точки B ");
+yB = Convert.ToDouble(Console.ReadLine());
+Console.Write("Введите координату z точки B ");
+zB = Convert.ToDouble(Console.ReadLine());
+
+
+Console.WriteLine(RasstoyanieMegduDvumyaTochkami3D(xA, yA, zA, xB, yB, zB));
+*/
+//==============================================================================================
+// Задача 23. Напишите программу, которая принимает на вход число (N) и выдаёт таблицу кубов чисел от 1 до N.
+/*
+Console.WriteLine("Введите число для вывода таблицы кубов чисел от 1 до этого числа");
+int Chislo = Convert.ToInt32(Console.ReadLine());
+int index = 1;
+int kubChisla = 1;
+
+while(index <= Chislo)
+{
+    kubChisla = Convert.ToInt32(Math.Pow(index,3));
+    Console.Write(kubChisla + " ");
+    index = index + 1;
+}
+*/
+//=================================================================================================================
