@@ -3,11 +3,9 @@
 /*
 Console.WriteLine("Введите пятизначное число");
 int Chislo = Convert.ToInt32(Console.ReadLine());
-int CifraCpavа = 0;
-int CifraClevа = 0;
+int CifraCpavа = Chislo % 10;
+int CifraClevа = Chislo / 10000;
 
-CifraCpavа = Chislo % 10;
-CifraClevа = Chislo / 10000;
 if(CifraCpavа == CifraClevа)
 {
     CifraCpavа = (Chislo % 100) / 10;
