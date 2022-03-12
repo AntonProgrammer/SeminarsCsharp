@@ -6,7 +6,7 @@ int MinPlus;
 int MaxMinus;
 int Max;
 int vremennaya;
-int index = 1;
+int index = 0;
 
 Console.WriteLine("Введите число последовательности");
 vremennaya = Convert.ToInt32(Console.ReadLine());
@@ -23,24 +23,32 @@ while(true)
     if(vremennaya == 0) break;
     index = index + 1;
     
-    if(vremennaya > Max)
+    if(vremennaya >= Max)
     {
         MaxMinus = Max;
         Max = vremennaya;
-    } 
-    
-    if(vremennaya < Min)
+    }
+    else if(vremennaya >= MaxMinus)
+        {
+            MaxMinus = vremennaya;
+        }
+        
+    if(vremennaya <= Min)
     {
         MinPlus = Min;
         Min = vremennaya;
     }
+    else if(vremennaya <= MinPlus)
+        {
+            MinPlus = vremennaya;
+        }
 }
 
-if(index == 1)
+if(index == 0)
 {
     Console.WriteLine("Ввели чисел последовательности меньше двух");
 }
-else if(index == 2)
+else if(index == 1)
     {
         Console.WriteLine($"Минимальное {Min} и максимальное {Max}");
     }
