@@ -26,7 +26,8 @@ MetodVivodaVtoroiCifriTrehznachnogoChisla(Chislo);
 /*
 int MetodPodschetaKolichestvaCifrChisla(int Chislo)
 {
-    int KolichestvoCifr = 0;
+    //нужно сделать дополнительное условие когда вводят ноль так как условие цикла не работает и возвращает 1 потом
+    int KolichestvoCifr = 0; 
 
     while(Chislo > 0)
     {
@@ -115,3 +116,4 @@ switch(NomerNedeli)
     }
 }
 */
+//==============================================================================================================

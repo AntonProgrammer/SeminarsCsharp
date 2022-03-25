@@ -90,6 +90,7 @@ while(index <= Chislo)
 */
 //==================================================================================================================
 // Работа в гурппах семинар 2
+//==================================================================================================================
 //Задача
 /*
 int number = new Random().Next(100, 999);
@@ -274,6 +275,7 @@ switch(NomerNedeli)
 */
 //=====================================================================================================
 // работа на семинаре 3.
+//=======================================================================================================
 // Задача. Написать программу, которая принимает на вход координаты точки (X и Y), причём X ≠ 0 и Y ≠ 0 и выдаёт номер четверти плоскости, в которой находится эта точка.
 /*
 int GetQuart(double xPoint, double yPoint)
@@ -383,7 +385,7 @@ Console.WriteLine(GetDistance(xA, yA, xB, yB));
 */
 //======================================================================================================
 // Задачи ДЗ с семинара 3
-
+//========================================================================================================
 // Задача 19. Напишите программу, которая принимает на вход пятизначное число и проверяет, является ли оно палиндромом.
 /*
 Console.WriteLine("Введите пятизначное число");
@@ -509,3 +511,175 @@ else if(index == 2)
     }
 */
 //===============================================================================================================
+// Задачи с семинара 4 на подсчет цифр в числе
+//===============================================================================================================
+// Задача. Напишите программу которая принимает на вход число и выдаёт количество цифр в числе.
+//Вариант 1
+/*
+void MetodPodschetaKolichestvaCifrChisla(int Chislo)
+{
+    int KolichestvoCifr = 0;
+
+    if (Chislo == 0) 
+    {
+        KolichestvoCifr = 1;
+        Console.WriteLine($"Количество цифр в введённом числе {KolichestvoCifr}");
+    }
+    else
+    {
+        while(Math.Abs(Chislo) > 0)
+        {
+            Chislo = Chislo / 10;
+            KolichestvoCifr = KolichestvoCifr + 1;
+        }
+
+        Console.WriteLine($"Количество цифр в введённом числе {KolichestvoCifr}");
+    }
+    
+}
+
+Console.WriteLine("Введите число");
+int Chislo = Convert.ToInt32(Console.ReadLine());
+MetodPodschetaKolichestvaCifrChisla(Chislo);
+*/
+//Вариант 2
+/*
+void MetodPodschetaKolichestvaCifrChisla(int Chislo)
+{
+    //нужно сделать дополнительное условие когда вводят ноль так как условие цикла не работает и возвращает 1 потом
+    int KolichestvoCifr = 1; 
+
+    while(Math.Abs(Chislo / 10) > 0)
+    {
+        Chislo = Chislo / 10;
+        KolichestvoCifr = KolichestvoCifr + 1;
+    }
+
+    Console.WriteLine($"Количество цифр в введённом числе {KolichestvoCifr}");
+}
+
+Console.WriteLine("Введите число");
+int Chislo = Convert.ToInt32(Console.ReadLine());
+MetodPodschetaKolichestvaCifrChisla(Chislo);
+*/
+//==========================================================================================================
+// Задача. Напишите программу которая принимает на вход число (А) и выдаёт сумму чисел от 1 до А. Примечание: Число A считаем натуральным.
+/*
+int SummaChiselOt1DoA (int ChisloA)
+{
+    int rezultat = 0;
+    int i = 1;
+
+    while(i <= ChisloA)
+    {
+        rezultat = rezultat + i;
+        i++;
+    }
+    
+    return rezultat;
+}
+
+Console.WriteLine("Введите целое число");
+int Chislo = Convert.ToInt32(Console.ReadLine());
+if(Chislo < 1) Console.WriteLine("Вы ввели ненатуральное число");
+else Console.WriteLine($"Сумма чисел от 1 до {Chislo} равна {SummaChiselOt1DoA(Chislo)}");
+*/
+//================================================================================================================
+// Задача. Напишите программу которая принимает на вход число (N) и выдаёт произведение чисел от 1 до N. Примечание: Число N считаем натуральным.
+/*
+int ProizvedenieChiselOt1DoN (int ChisloN)
+{
+    int rezultat = 1;
+    int i = 1;
+
+    while(i <= ChisloN)
+    {
+        rezultat = rezultat * i;
+        i++;
+    }
+    
+    return rezultat;
+}
+
+Console.WriteLine("Введите целое число");
+int Chislo = Convert.ToInt32(Console.ReadLine());
+if(Chislo < 1) Console.WriteLine("Вы ввели ненатуральное число");
+else Console.WriteLine($"Произведение чисел от 1 до {Chislo} равно {ProizvedenieChiselOt1DoN(Chislo)}");
+*/
+//===========================================================================================================
+// Задача. Напишите программу которая выводит массив из 8 элементов заполненный нулями и единицами в случайном порядке.
+/*
+void VivodMassiva8Elementov()
+{
+    int[] a = new int[8];
+    for (int i = 0; i < 8; i++)
+    {
+        a[i] = new Random().Next(0,2);
+        Console.Write(a[i] + " ");
+    }
+}
+
+VivodMassiva8Elementov();
+*/
+//=============================================================================================================
+// Решение зада ДЗ с семинара 4
+//=============================================================================================================
+// Задача 1: Напишите цикл, который принимает на вход два числа (A и B) и возводит число A в натуральную степень B.
+/*
+int VozvedenitChislaCtepen (int ChisloA, int CtepenB)
+{
+    int rezultat = 1;
+    for (int i = 0; i < CtepenB; i++)
+    {
+        rezultat = rezultat * ChisloA;
+    }
+
+    return rezultat;
+}
+
+Console.WriteLine("Введите число");
+int Chislo = Convert.ToInt32(Console.ReadLine());
+Console.WriteLine("Введите натуральную степень в которую нужно возвести число");
+int Ctepen = Convert.ToInt32(Console.ReadLine());
+if (Ctepen < 1) Console.WriteLine("Вы ввели ненатуральное число");
+else Console.WriteLine($"Число {Chislo} в степени {Ctepen} равно {VozvedenitChislaCtepen(Chislo,Ctepen)}");
+*/
+//============================================================================================================
+// Задача 2: Напишите программу, которая принимает на вход число и выдаёт сумму цифр в числе.
+/*
+int SummaCifrChisla(int ChisloA)
+{
+    int rezultat = 0;
+    ChisloA = Math.Abs(ChisloA);
+
+    while(ChisloA > 0)
+    {
+        rezultat = rezultat + (ChisloA % 10);
+        ChisloA = ChisloA / 10;
+    }
+
+    return rezultat;
+}
+
+Console.WriteLine("Введите число");
+int Chislo = Convert.ToInt32(Console.ReadLine());
+
+Console.WriteLine($"Сумма цифр введённого числа {Chislo} равна {SummaCifrChisla(Chislo)}");
+*/
+//=============================================================================================================
+// Задача 3: Напишите программу, которая задаёт массив из 8 элементов и выводит их на экран.
+/*
+void Massiv8Elementov()
+{
+    int[] Massiv = new int[8];
+    for(int i = 0; i < 8; i++)
+    {
+        Random CluchainoeChislo = new Random();
+        Massiv[i] = CluchainoeChislo.Next();
+        Console.Write(Massiv[i] + " ");
+    }
+}
+
+Massiv8Elementov();
+*/
+//================================================================================================================
