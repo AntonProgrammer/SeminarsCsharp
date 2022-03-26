@@ -511,7 +511,7 @@ else if(index == 2)
     }
 */
 //===============================================================================================================
-// Задачи с семинара 4 на подсчет цифр в числе
+// Задачи с семинара 4 
 //===============================================================================================================
 // Задача. Напишите программу которая принимает на вход число и выдаёт количество цифр в числе.
 //Вариант 1
@@ -683,3 +683,294 @@ void Massiv8Elementov()
 Massiv8Elementov();
 */
 //================================================================================================================
+// Задачи с семинара 5
+//===============================================================================================================
+// Задача. Задать массив из 12 элементов заполненный случайными числами из промежутка от -9 до 9, т.е. массив целых чисел получится. Найти сумму отрицательных и положительных элементов массива.
+// Вариант без функции
+/*
+int[] Massiv = new int[12];
+int SummaPologitelnixElementov = 0;
+int SummaOtricatelnixElementov = 0;
+for(int i = 0; i < 12; i++)
+{
+    Massiv[i] = new Random().Next(-9, 10);
+    if(Massiv[i] > 0) SummaPologitelnixElementov = SummaPologitelnixElementov + Massiv[i];
+    else SummaOtricatelnixElementov = SummaOtricatelnixElementov + Massiv[i];
+    Console.Write(Massiv[i] + " ");
+}
+
+Console.WriteLine();
+Console.WriteLine($"Сумма положительных элементов равна {SummaPologitelnixElementov}. Сумма отрицательных элементов равна {SummaOtricatelnixElementov}");
+*/
+// Вариант c функцией
+/*
+void SummaPologitelnixOtricatelnixElementov()
+{
+    int[] Massiv = new int[12];
+    int SummaPologitelnixElementov = 0;
+    int SummaOtricatelnixElementov = 0;
+    for(int i = 0; i < 12; i++)
+    {
+        Massiv[i] = new Random().Next(-9, 10);
+        if(Massiv[i] >= 0) SummaPologitelnixElementov = SummaPologitelnixElementov + Massiv[i];
+        else SummaOtricatelnixElementov = SummaOtricatelnixElementov + Massiv[i];
+        Console.Write(Massiv[i] + " ");
+    }
+    Console.WriteLine();
+    Console.WriteLine($"Сумма положительных элементов равна {SummaPologitelnixElementov}. Сумма отрицательных элементов равна {SummaOtricatelnixElementov}");
+}
+
+SummaPologitelnixOtricatelnixElementov();
+*/
+//===============================================================================================================
+// Задача. Перевернуть элементы массива, только не по порядку а по знаку. Например -5 должно стать 5, минус 18 должно стать 18 и т. д. т. е. пройтись по массиву и в каждом элементе заменить знак.
+/*
+int[] Massiv = new int[12];
+
+for(int i = 0; i < 12; i++)
+{
+    Massiv[i] = new Random().Next(-9, 10);
+    Console.Write(Massiv[i] + " ");
+}
+
+Console.WriteLine();
+
+for(int i = 0; i < 12; i++)
+{
+    Console.Write(Massiv[i]*(-1) + " ");
+}
+*/
+//===============================================================================================================
+// Задача. Задать произвольный массив. Необходимо написать программу которая позволяет пользователю ввести число и выводить да если это число присутствует в массиве или нет если его там нет.
+/*
+int[] Massiv = new int[15];
+int PerekluchatelChisloNaideno = 0;
+
+for(int i = 0; i < 15; i++)
+{
+    Massiv[i] = new Random().Next(1,16);
+    Console.Write(Massiv[i] + " ");    
+}
+
+Console.WriteLine();
+Console.WriteLine("Введите число для проверки наличия в массиве");
+int Chislo = Convert.ToInt32(Console.ReadLine());
+
+for(int i = 0; i < 15; i++ )
+{
+    if(Massiv[i] == Chislo) 
+    {
+        Console.WriteLine($"Да... число {Chislo} в массиве присутствует");
+        PerekluchatelChisloNaideno = 1;
+        break;
+    }
+}
+
+if(PerekluchatelChisloNaideno == 0) Console.WriteLine($"Нет... число {Chislo} в массиве отсутствует");
+*/
+//==============================================================================================================
+// Задача. Необходимо создать одномерный массив из 123 случайных чисел и необходимо найти количество элементов которые лежать в отрезке от 10 до 99. Имеется ввиду не индекс элементов а само значение элементов.
+/*
+int[] Massiv = new int[123];
+int KolichestvoElementov = 0;
+
+for(int i = 0; i < 123; i++)
+{
+    Massiv[i] = new Random().Next(1,1000);
+    if(Massiv[i] >= 10 && Massiv[i] <= 99) KolichestvoElementov = KolichestvoElementov +1;
+}
+
+Console.WriteLine($"Количество элементов массива на отрезке от [10,99] равно {KolichestvoElementov}");
+*/
+//==================================================================================================================
+// Задача. Необходимо найти произведение пар элементов в массиве по принципу полиндромов сначала первого и последнего и далее идём внутрь т.е. второго и предпоследнего. Если количество нечётное то у серединного пары нет его тогда просто плюсуем. И все суммы каждой пары нужно будет помещать в новый массив, а нечётный нужно будет поместить без пары просто в элемент его.
+//Вариант 1
+/*
+Console.WriteLine("Введите длинну массива");
+int DlinaMassiva = Convert.ToInt32(Console.ReadLine());
+int[] Massiv = new int[DlinaMassiva];
+int NechetnijElement = 1;
+if(DlinaMassiva % 2 == 0) NechetnijElement = 0;
+int[] MassivProizvedenij = new int[(DlinaMassiva / 2) + NechetnijElement];
+
+for(int i = 0; i < DlinaMassiva; i++)
+{
+    Massiv[i] = i + 1;
+    Console.Write(Massiv[i] + " ");
+}
+
+Console.WriteLine();
+
+for(int i = 0; i < ((DlinaMassiva / 2) + NechetnijElement); i++)
+{
+    if(i == DlinaMassiva - 1 - i)
+    {
+        MassivProizvedenij[i] = Massiv[i];
+        Console.Write(MassivProizvedenij[i] + " ");
+        break;
+    }
+    MassivProizvedenij[i] = Massiv[i] * Massiv[DlinaMassiva - 1 - i];
+    Console.Write(MassivProizvedenij[i] + " ");
+}
+*/
+//Вариант 2
+/*
+Console.WriteLine("Введите длинну массива");
+int DlinaMassiva = Convert.ToInt32(Console.ReadLine());
+int[] Massiv = new int[DlinaMassiva];
+int NechetnijElement = 1;
+if(DlinaMassiva % 2 == 0) NechetnijElement = 0;
+int[] MassivProizvedenij = new int[(DlinaMassiva / 2) + NechetnijElement];
+
+for(int i = 0; i < DlinaMassiva; i++)
+{
+    Massiv[i] = i + 1;
+    Console.Write(Massiv[i] + " ");
+}
+
+Console.WriteLine();
+
+for(int i = 0; i < ((DlinaMassiva / 2) + NechetnijElement); i++)
+{
+    MassivProizvedenij[i] = Massiv[i] * Massiv[DlinaMassiva - 1 - i];
+    if(i == DlinaMassiva - 1 - i) MassivProizvedenij[i] = Massiv[i];
+    Console.Write(MassivProizvedenij[i] + " ");
+}
+*/
+//Вариант 3
+/*
+Console.WriteLine("Введите длинну массива");
+int DlinaMassiva = Convert.ToInt32(Console.ReadLine());
+int[] Massiv = new int[DlinaMassiva];
+int NechetnijElement = 0;
+if(DlinaMassiva % 2 != 0) NechetnijElement = 1;
+int[] MassivProizvedenij = new int[(DlinaMassiva / 2) + NechetnijElement];
+
+for(int i = 0; i < DlinaMassiva; i++)
+{
+    Massiv[i] = i + 1;
+    Console.Write(Massiv[i] + " ");
+}
+
+Console.WriteLine();
+
+for(int i = 0; i < (DlinaMassiva / 2); i++)
+{
+    MassivProizvedenij[i] = Massiv[i] * Massiv[DlinaMassiva - 1 - i];
+    Console.Write(MassivProizvedenij[i] + " ");
+}
+
+if(NechetnijElement == 1) MassivProizvedenij[DlinaMassiva / 2] = Massiv[DlinaMassiva / 2];
+Console.Write(MassivProizvedenij[DlinaMassiva / 2] + " ");
+*/
+//===================================================================================================================================
+// Решение задач ДЗ с семинара 5
+//====================================================================================================================================
+// Задача 1: Задайте массив заполненный случайными положительными трёхзначными числами. Напишите программу, которая покажет количество чётных чисел в массиве.
+/*
+int KolichestvoChetnixChiselMassiva()
+{
+    int[] Massiv = new int[10];
+    int Cchetchik = 0;
+
+    for(int i = 0; i < 10; i++)
+    {
+        Massiv[i] = new Random().Next(100,1000);
+        if (Massiv[i] % 2 == 0) Cchetchik = Cchetchik + 1;
+        Console.Write(Massiv[i] + " ");
+    }
+
+    Console.WriteLine();
+    return Cchetchik;
+}
+
+Console.WriteLine($"В массиве чётных чисел {KolichestvoChetnixChiselMassiva()}");
+*/
+//============================================================================================================================================
+// Задача 2: Задайте одномерный массив, заполненный случайными числами. Найдите сумму элементов, стоящих на нечётных позициях.
+//Вариант с суммой элементов массива с нечётными позициями
+/*
+int SummaNechetnixPozicijMassiva()
+{
+    int[] Massiv = new int[10];
+    int SummaNechetnixPozicij = 0;
+
+    for(int i = 0; i < 10; i++)
+    {
+        Massiv[i] = new Random().Next(1,11);
+        Console.Write(Massiv[i] + " ");
+    }
+
+    for(int i = 0; i < 10; i++)
+    {
+        if(i % 2 == 0) SummaNechetnixPozicij = SummaNechetnixPozicij + Massiv[i];
+    }
+    Console.WriteLine();
+    return SummaNechetnixPozicij;
+}
+
+Console.WriteLine($"Сумма элементов массива с нечётными позициями равна {SummaNechetnixPozicijMassiva()}");
+*/
+//Вариант с суммой элементов массива с нечётными индексами================================================================================
+/*
+int SummaNechetnixIndeksovMassiva()
+{
+    int[] Massiv = new int[10];
+    int SummaNechetnixIndeksov = 0;
+
+    for(int i = 0; i < 10; i++)
+    {
+        Massiv[i] = new Random().Next(1,11);
+        Console.Write(Massiv[i] + " ");
+    }
+
+    for(int i = 0; i < 10; i++)
+    {
+        if(i % 2 != 0) SummaNechetnixIndeksov = SummaNechetnixIndeksov + Massiv[i];
+    }
+    Console.WriteLine();
+    return SummaNechetnixIndeksov;
+}
+
+Console.WriteLine($"Сумма элементов массива с нечётными интексами равна {SummaNechetnixIndeksovMassiva()}");
+*/
+//===================================================================================================================================
+// Задача 3: Задайте массив вещественных чисел. Найдите разницу между максимальным и минимальным элементов массива.
+/*
+double RaznicaMegduMaximalnimMinimalnimElenentomMassiva()
+{
+    double[] Massiv = new double[10];
+    double MaximalnijElement = Massiv[0];
+    double ManimalnijElement = Massiv[0];
+    double RaznicaMaxMin = 0;
+
+    for(int i = 0; i < 10; i++)
+    {
+        Massiv[i] = new Random().Next(-10,11);
+        Console.Write(Massiv[i] + " ");
+    }
+
+    Console.WriteLine();
+
+    for(int i = 0; i < 10; i++)
+    {
+        if (Massiv[i] > MaximalnijElement) MaximalnijElement = Massiv[i];
+    }
+
+    Console.WriteLine($"Максимальный элемент равен {MaximalnijElement}");
+   // Console.WriteLine();
+
+    for(int i = 0; i < 10; i++)
+    {
+        if (Massiv[i] < ManimalnijElement) ManimalnijElement = Massiv[i];
+    }
+
+    Console.WriteLine($"Минимальный элемент равен {ManimalnijElement}");
+    //Console.WriteLine();
+
+    return RaznicaMaxMin = MaximalnijElement - ManimalnijElement;
+}
+
+Console.WriteLine($"Разница между максимальным и минимальным элементами массива равна {RaznicaMegduMaximalnimMinimalnimElenentomMassiva()}");
+*/
+//==============================================================================================================================================
