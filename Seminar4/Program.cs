@@ -9,6 +9,7 @@ int VozvedenitChislaCtepen (int ChisloA, int CtepenB)
         rezultat = rezultat * ChisloA;
     }
 
+
     return rezultat;
 }
 
