@@ -73,16 +73,16 @@ Console.WriteLine($"Сумма элементов массива с нечётн
 double RaznicaMegduMaximalnimMinimalnimElenentomMassiva()
 {
     double[] Massiv = new double[10];
-    double MaximalnijElement = Massiv[0];
-    double ManimalnijElement = Massiv[0];
     double RaznicaMaxMin = 0;
 
     for(int i = 0; i < 10; i++)
     {
-        Massiv[i] = new Random().Next(-10,11);
+        Massiv[i] = new Random().Next(1,100);
         Console.Write(Massiv[i] + " ");
     }
 
+    double MaximalnijElement = Massiv[0];
+    double ManimalnijElement = Massiv[0];
     Console.WriteLine();
 
     for(int i = 0; i < 10; i++)
