@@ -974,3 +974,420 @@ double RaznicaMegduMaximalnimMinimalnimElenentomMassiva()
 Console.WriteLine($"Разница между максимальным и минимальным элементами массива равна {RaznicaMegduMaximalnimMinimalnimElenentomMassiva()}");
 */
 //==============================================================================================================================================
+// Задача. Контрольная работа
+//=============================================================================================================
+// Задача. Написать программу, которая из имеющегося массива строк формирует массив из строк, длина которых меньше либо равна 3 символа. Первоначальный массив можно ввести с клавиатуры, либо задать на старте выполнения алгоритма. При решении не рекомендуется пользоваться коллекциями, лучше обойтись исключительно массивами.
+//Вариант 1
+/*
+void MassivDo3Simvolov(string[] massiv)
+{
+    int cchetchik = 0;
+    int dlinaNewMassiva = 0;
+    for (int i = 0; i < massiv.Length; i++)
+    {
+        if(massiv[i].Length <= 3) cchetchik = cchetchik + 1;
+    }
+
+    string[] newMassiv = new string[cchetchik];
+    dlinaNewMassiva = cchetchik;
+    cchetchik = 0;
+    if(dlinaNewMassiva == 0) Console.Write("[]");
+
+    for (int i = 0; i < massiv.Length; i++)
+    {
+        if(massiv[i].Length <= 3)
+        {
+            newMassiv[cchetchik] = massiv[i];
+                       
+            if(cchetchik == 0 && dlinaNewMassiva == 1)
+            {
+                Console.Write("[\"" + newMassiv[cchetchik] + "\"]");
+            }
+            else if(cchetchik == 0)
+                {
+                    Console.Write("[\"" + newMassiv[cchetchik] + "\",");
+                }
+                else if(cchetchik == (dlinaNewMassiva - 1))
+                    {
+                        Console.Write("\"" + newMassiv[cchetchik] + "\"]");
+                    }
+                    else
+                    {
+                        Console.Write("\"" + newMassiv[cchetchik] + "\",");
+                    }
+
+            cchetchik = cchetchik + 1;
+        }
+    }
+
+    Console.WriteLine();
+}
+
+string[] massiv1 = {"hello", "2", "world", ":-)"};
+string[] massiv2 = {"1234", "1567", "-2", "computer science"};
+string[] massiv3 = {"Russia", "Denmark", "Kazan"};
+
+MassivDo3Simvolov(massiv1);
+MassivDo3Simvolov(massiv2);
+MassivDo3Simvolov(massiv3);
+*/
+//Вариант 2 ================================================================================================================
+/*
+void MassivDo3Simvolov(string[] massiv)
+{
+    int cchetchik = 0;
+    for (int i = 0; i < massiv.Length; i++)
+    {
+        if(massiv[i].Length <= 3) cchetchik = cchetchik + 1;
+    }
+
+    string[] newMassiv = new string[cchetchik];
+    
+    if(cchetchik == 0) Console.Write("[]");
+
+    cchetchik = 0;
+    
+    for (int i = 0; i < massiv.Length; i++)
+    {
+        if(massiv[i].Length <= 3)
+        {
+            newMassiv[cchetchik] = massiv[i];
+            cchetchik = cchetchik + 1;
+        }
+    }
+
+     for (int i = 0; i < newMassiv.Length; i++)
+    {
+        if(i == 0 && newMassiv.Length == 1)
+        {
+            Console.Write("[\"" + newMassiv[i] + "\"]");
+        } 
+        else if(i == 0 && newMassiv.Length != 1)
+            {
+                Console.Write("[\"" + newMassiv[i] + "\",");
+            }
+            else if(i == (newMassiv.Length - 1))
+                {
+                  Console.Write("\"" + newMassiv[i] + "\"]");
+                }
+                else                                          //if(i > 0 && i < (newMassiv.Length - 1)) Можно без последнего условия просто else оставить
+                {
+                    Console.Write("\"" + newMassiv[i] + "\",");
+                } 
+    }
+
+    Console.WriteLine();
+}
+
+string[] massiv1 = {"hello", "2", "world", ":-)"};
+string[] massiv2 = {"1234", "1567", "-2", "computer science"};
+string[] massiv3 = {"Russia", "Denmark", "Kazan"};
+
+MassivDo3Simvolov(massiv1);
+MassivDo3Simvolov(massiv2);
+MassivDo3Simvolov(massiv3);
+*/
+//======================================================================================================================================
+// Задачи с семинара 6.
+//================================================================================================================================================
+// Задача. Напишите программу, которая принимает на вход три числа и проверяет, может ли существовать треугольник с сторонами такой длины.
+/*
+void ProverkaNaTreugolnik(int dlinaA, int dlinaB, int dlinaC)
+{
+    if(dlinaA < (dlinaB + dlinaC) && dlinaB < (dlinaA + dlinaC) && dlinaC < (dlinaA + dlinaB)) Console.WriteLine("Треугольник существует");
+    else Console.WriteLine("Треугольник не существует");
+
+}
+
+
+Console.WriteLine("Введите сторону A треугольника для проверки");
+int ctotonaA = Convert.ToInt32(Console.ReadLine());
+Console.WriteLine("Введите сторону B треугольника для проверки");
+int ctotonaB = Convert.ToInt32(Console.ReadLine());
+Console.WriteLine("Введите сторону C треугольника для проверки");
+int ctotonaC = Convert.ToInt32(Console.ReadLine());
+
+ProverkaNaTreugolnik(ctotonaA, ctotonaB, ctotonaC);
+*/
+//==============================================================================================================================================
+// Задача. Напишите программу, которая будет преобразовывать десятичное число в двоичное.
+// Вариант 1
+/*
+void PerevodIz10v2(int chisloV10)
+{
+    string dvoichnoe = String.Empty; //  string dvoichnoe = ""; можно написать здесь так
+
+    while(chisloV10 > 0)
+    {
+        dvoichnoe = Convert.ToString(chisloV10 % 2) + dvoichnoe;
+        chisloV10 = chisloV10 / 2;
+    }
+    
+    Console.WriteLine(dvoichnoe);
+}
+
+Console.WriteLine("Введите десятичное число для перевода в двоичное");
+int chislo = Convert.ToInt32(Console.ReadLine());
+
+PerevodIz10v2(chislo);
+*/
+//Вариант 2======================================================================================================================================
+/*
+Console.WriteLine("Введите десятичное число для перевода в двоичное");
+int chislo = Convert.ToInt32(Console.ReadLine());
+if(chislo == 0) Console.WriteLine($"[{chislo}]");
+else
+{
+    int DlinaDvoichnogoChisla = 0;
+    int i = 0;
+    int KolichestvoDvoichnixKombinacijchislo = chislo + 1;
+    if (Math.Log(KolichestvoDvoichnixKombinacijchislo, 2) % 1 == 0) DlinaDvoichnogoChisla = Convert.ToInt32(Math.Round(Math.Log(KolichestvoDvoichnixKombinacijchislo ,2), MidpointRounding.ToZero)); // проверяем целове число или нет
+    else DlinaDvoichnogoChisla = Convert.ToInt32(Math.Round(Math.Log(KolichestvoDvoichnixKombinacijchislo ,2) + 1, MidpointRounding.ToZero));
+    
+   int[] massivPerevodaChisla = new int[DlinaDvoichnogoChisla];
+    
+    while(chislo > 0)
+    {
+        massivPerevodaChisla[i] = chislo % 2;
+        chislo = chislo / 2;
+        i++;
+    }
+
+    int[] dvoichnoeChislo = new int[DlinaDvoichnogoChisla];
+    for(i = 0; i < DlinaDvoichnogoChisla; i++)
+    {
+        dvoichnoeChislo[i] = massivPerevodaChisla[DlinaDvoichnogoChisla - 1 - i];
+    }
+
+    Console.WriteLine("[{0}]", string.Join(" ", dvoichnoeChislo));
+}
+*/
+// Вариант 3=============================================================================================================================
+/*
+Console.WriteLine("Введите десятичное число для перевода в двоичное");
+int chislo = Convert.ToInt32(Console.ReadLine());
+if(chislo == 0) Console.WriteLine($"[{chislo}]");
+else
+{
+    int DlinaDvoichnogoChisla = 0;
+    int i = 0;
+    int KolichestvoDvoichnixKombinacijchislo = chislo + 1;
+    if (Math.Log(KolichestvoDvoichnixKombinacijchislo, 2) % 1 == 0) DlinaDvoichnogoChisla = Convert.ToInt32(Math.Round(Math.Log(KolichestvoDvoichnixKombinacijchislo ,2), MidpointRounding.ToZero)); // проверяем целове число или нет
+    else DlinaDvoichnogoChisla = Convert.ToInt32(Math.Round(Math.Log(KolichestvoDvoichnixKombinacijchislo ,2) + 1, MidpointRounding.ToZero));
+    
+    int[] massivPerevodaChisla = new int[DlinaDvoichnogoChisla];
+    
+    while(chislo > 0)
+    {
+        massivPerevodaChisla[i] = chislo % 2;
+        chislo = chislo / 2;
+        i++;
+    }
+
+    for(i = (massivPerevodaChisla.Length - 1); i>= 0; i--)
+    {   
+        if(i == massivPerevodaChisla.Length - 1 && DlinaDvoichnogoChisla == 1) Console.Write("[" + massivPerevodaChisla[i] + "]");
+        else if (i == massivPerevodaChisla.Length - 1) Console.Write("[" + massivPerevodaChisla[i] + " ");
+            else if (i == 0) Console.Write(massivPerevodaChisla[i] + "]");
+                else Console.Write(massivPerevodaChisla[i] + " ");        
+    }
+}
+*/
+// Вариант 4 с отрицательынми числами =============================================================================================================================
+/*
+Console.WriteLine("Введите десятичное число для перевода в двоичное");
+int chislo = Convert.ToInt32(Console.ReadLine());
+if(chislo == 0) Console.WriteLine($"[{chislo}]");
+else
+{   
+    int chisloOtricatelnoe = 0;
+    if(chislo < 0 ) chisloOtricatelnoe = 1;
+    
+    chislo = Math.Abs(chislo);
+    int dlinaDvoichnogoChisla = 0;
+    int i = 0;
+    int KolichestvoDvoichnixKombinacijchislo = chislo + 1;
+    if (Math.Log(KolichestvoDvoichnixKombinacijchislo, 2) % 1 == 0) dlinaDvoichnogoChisla = Convert.ToInt32(Math.Round(Math.Log(KolichestvoDvoichnixKombinacijchislo ,2), MidpointRounding.ToZero)); // проверяем целове число или нет
+    else dlinaDvoichnogoChisla = Convert.ToInt32(Math.Round(Math.Log(KolichestvoDvoichnixKombinacijchislo ,2) + 1, MidpointRounding.ToZero)); // так как нам нужно не остаток а полное количество бит для размещения числа без учёта знака
+    
+    if(chisloOtricatelnoe == 1) dlinaDvoichnogoChisla = dlinaDvoichnogoChisla + 1; // это старший бит для отрицательного знака
+    
+    int[] massivPerevodaChisla = new int[dlinaDvoichnogoChisla];
+    
+    while(chislo > 0)
+    {
+        massivPerevodaChisla[i] = chislo % 2;
+        chislo = chislo / 2;
+        i++;
+    }
+    if(chisloOtricatelnoe == 1) massivPerevodaChisla[massivPerevodaChisla.Length - 1] = 1;
+
+    for(i = (massivPerevodaChisla.Length - 1); i>= 0; i--)
+    {   
+       if(i == massivPerevodaChisla.Length - 1 && massivPerevodaChisla.Length == 1) Console.Write("[" + massivPerevodaChisla[i] + "]");
+       else if (i == massivPerevodaChisla.Length - 1) Console.Write("[" + massivPerevodaChisla[i] + " ");
+            else if (i == 0) Console.Write(massivPerevodaChisla[i] + "]");
+                 else Console.Write(massivPerevodaChisla[i] + " ");        
+    }
+}
+*/
+//===========================================================================================================================================
+// Задача. Не используя рекурсию, выведите первые N чисел Фибоначчи. Первые два числа Фибоначчи: 0 и 1.
+// Вариант 1
+/*
+void VivodChicelFibonachi(int kolichestvoChisel)
+{
+    int[] chislaFibonachiMassiv = new int[kolichestvoChisel];
+    for(int i = 0; i < chislaFibonachiMassiv.GetLength(0); i++)
+    {
+        if(i == 0)
+        {
+            chislaFibonachiMassiv[i] = 0;
+            Console.Write(chislaFibonachiMassiv[i] + " ");
+        }
+        else if (i == 1)
+            {
+                chislaFibonachiMassiv[i] = 1;
+                Console.Write(chislaFibonachiMassiv[i] + " ");
+            }                
+            else
+            {
+                chislaFibonachiMassiv[i] = chislaFibonachiMassiv[i - 1] + chislaFibonachiMassiv[i - 2];
+                Console.Write(chislaFibonachiMassiv[i] + " ");
+            }
+        Console.WriteLine(); 
+    }
+}
+
+Console.WriteLine("Введите количество первых чисел Фиббоначчи которые нужно вывести");
+int kolichestvoChicelFibonachi = Convert.ToInt32(Console.ReadLine());
+
+VivodChicelFibonachi(kolichestvoChicelFibonachi);
+*/
+// Вариант 2
+/*
+void VivodChicelFibonachi(int kolichestvoChisel)
+{
+    int[] chislaFibonachiMassiv = new int[kolichestvoChisel];
+    chislaFibonachiMassiv[0] = 0;
+    chislaFibonachiMassiv[1] = 1;
+
+    for(int i = 2; i < chislaFibonachiMassiv.GetLength(0); i++)
+    {
+        chislaFibonachiMassiv[i] = chislaFibonachiMassiv[i - 1] + chislaFibonachiMassiv[i - 2];
+        Console.Write(chislaFibonachiMassiv[i] + " ");
+    }
+}
+
+Console.WriteLine("Введите количество первых чисел Фиббоначчи которые нужно вывести");
+int kolichestvoChicelFibonachi = Convert.ToInt32(Console.ReadLine());
+
+VivodChicelFibonachi(kolichestvoChicelFibonachi);
+*/
+//=======================================================================================================================================
+// Задача. Напишите программу, которая будет создавать копию заданного массива с помощью поэлементного копирования.
+/*
+void KopiaMassiv(int[,] massivKopia) //можно делать метод не void а int тогда нужно писать int[,] и добавить return
+{
+    int[,] newMassivKopia = new int[massivKopia.GetLength(0), massivKopia.GetLength(1)];
+
+    for(int i = 0; i < newMassivKopia.GetLength(0); i++)
+    {
+        for(int j = 0; j < newMassivKopia.GetLength(1); j++)
+        {
+            newMassivKopia[i,j] = massivKopia[i,j];
+            Console.Write(newMassivKopia[i,j] + " ");
+        }
+
+        Console.WriteLine();
+    }
+
+}
+
+int[,] massiv = new int[3,3]; //int[,] massiv = {{1,2,3}, {4,5,6}, {7,8,9}}; можно задать вручную тогда не нужны строки с заполнением рандома
+
+for (int i = 0; i < massiv.GetLength(0); i++)
+{
+    for (int j = 0; j < massiv.GetLength(1); j++)
+    {
+        massiv[i,j] = new Random().Next(1,11);
+        Console.Write(massiv[i,j] + " ");
+    }
+    
+    Console.WriteLine();
+}
+
+Console.WriteLine();
+KopiaMassiv(massiv);
+*/
+//==========================================================================================================================================
+// Задача. Сортировка массива
+// Вариант от меньшего к большему
+/*
+void PechatMassiva(int[] massivPechat)
+{
+    for (int i = 0; i < massivPechat.Length; i++)
+    {
+        Console.Write($"{massivPechat[i]} ");
+    }
+
+    Console.WriteLine();
+}
+
+void SortirovkaMassiva(int[] massivSortirovka)
+{
+    for (int i = 0; i < massivSortirovka.Length - 1; i++)
+    {
+        int minPoziciya = i;
+
+        for (int j = i + 1; j < massivSortirovka.Length; j++)
+        {
+            if(massivSortirovka[j] < massivSortirovka[minPoziciya]) minPoziciya = j;
+        }
+
+        int vremennayaPoziciya = massivSortirovka[i];
+        massivSortirovka[i] = massivSortirovka[minPoziciya];
+        massivSortirovka[minPoziciya] = vremennayaPoziciya;
+    }
+}
+
+int[] massiv = {1,5,4,3,2,6,7,1,1};
+PechatMassiva(massiv);
+SortirovkaMassiva(massiv);
+PechatMassiva(massiv);
+*/
+// Вариант от большего к меньшему
+/*
+void PechatMassiva(int[] massivPechat)
+{
+    for (int i = 0; i < massivPechat.Length; i++)
+    {
+        Console.Write($"{massivPechat[i]} ");
+    }
+
+    Console.WriteLine();
+}
+
+void SortirovkaMassiva(int[] massivSortirovka)
+{
+    for (int i = 0; i < massivSortirovka.Length - 1; i++)
+    {
+        int maxPoziciya = i;
+
+        for (int j = i + 1; j < massivSortirovka.Length; j++)
+        {
+            if(massivSortirovka[j] > massivSortirovka[maxPoziciya]) maxPoziciya = j;
+        }
+
+        int vremennayaPoziciya = massivSortirovka[i];
+        massivSortirovka[i] = massivSortirovka[maxPoziciya];
+        massivSortirovka[maxPoziciya] = vremennayaPoziciya;
+    }
+}
+
+int[] massiv = {1,5,4,3,2,6,7,1,1};
+PechatMassiva(massiv);
+SortirovkaMassiva(massiv);
+PechatMassiva(massiv);
+*/
+//============================================================================================================================================
