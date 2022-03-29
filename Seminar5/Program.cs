@@ -69,6 +69,7 @@ Console.WriteLine($"Сумма элементов массива с нечётн
 */
 //===================================================================================================================================
 // Задача 3: Задайте массив вещественных чисел. Найдите разницу между максимальным и минимальным элементов массива.
+// Вариант 1
 /*
 double RaznicaMegduMaximalnimMinimalnimElenentomMassiva()
 {
@@ -105,5 +106,35 @@ double RaznicaMegduMaximalnimMinimalnimElenentomMassiva()
 }
 
 Console.WriteLine($"Разница между максимальным и минимальным элементами массива равна {RaznicaMegduMaximalnimMinimalnimElenentomMassiva()}");
+*/
+// Вариант 2===========================================================================================================================
+/*
+void ZapolnenieMassiva(double[] massivZapolnenij)
+{
+    for(int i = 0; i < 10; i++)
+    {
+        Random random = new Random();
+        massivZapolnenij[i] = 1000 * random.NextDouble();
+        Console.Write(massivZapolnenij[i] + " ");
+    }
+}
+
+void RaznicaMaxMin(double[] massivRaznicaMinMax)
+{
+    double min = double.MaxValue, max = double.MinValue;
+
+    for(int i = 0; i < 10; i++)
+    {
+        if (massivRaznicaMinMax[i] < min) min = massivRaznicaMinMax[i];
+        if (massivRaznicaMinMax[i] > max) max = massivRaznicaMinMax[i];
+    }
+
+    Console.WriteLine($"Разница между максимальным и минимальным элементами массива равна {max - min}");;
+}
+
+double[] massiv = new double[10];
+ZapolnenieMassiva(massiv);
+Console.WriteLine();
+RaznicaMaxMin(massiv);
 */
 //==============================================================================================================================================
