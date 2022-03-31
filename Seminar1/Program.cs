@@ -1231,6 +1231,24 @@ else
     }
 }
 */
+// Вариант 5================================================================================================================================
+/*
+string convertingToBin(int num, string snum)
+{   
+    if (num % 2 == 0) snum = "0" + snum;
+    else snum = "1" + snum;
+   
+    if ((num/2) != 0) return convertingToBin(num/2, snum); 
+    else return snum;
+}
+
+Console.Write("Введите десятичное число: "); 
+int numberDec = Convert.ToInt32(Console.ReadLine());
+
+string numberBin = "";
+numberBin = convertingToBin(numberDec, numberBin);
+Console.Write("Двоичное число: " + numberBin);
+*/
 //===========================================================================================================================================
 // Задача. Не используя рекурсию, выведите первые N чисел Фибоначчи. Первые два числа Фибоначчи: 0 и 1.
 // Вариант 1
@@ -1391,3 +1409,212 @@ SortirovkaMassiva(massiv);
 PechatMassiva(massiv);
 */
 //============================================================================================================================================
+// Задачи. Семинар 7
+//============================================================================================================================================
+// Задача. Задайте двумерный массив размером m×n, заполненный случайными двухзначными целыми числами.
+/*
+void Array (int m, int n)
+{
+    Random r = new Random();
+    int[,] matrix = new int[m, n];
+    for (int i = 0; i < matrix.GetLength(0); i++)
+    {
+        for (int j = 0; j < matrix.GetLength(1); j++)
+        {
+            matrix[i, j] = r.Next (10, 100);
+            Console.Write ($"{matrix[i,j]} ");
+        }
+        Console.WriteLine();
+    }
+}
+
+int dlinaRow = 3;
+int dlinaCol = 4;
+Array(dlinaRow, dlinaCol);
+*/
+//============================================================================================================================================
+// Задача. Задайте двумерный массив размера m на n, каждый элемент в массиве находится по формуле: Aₘₙ = m+n. Выведите полученный массив на экран.
+/*
+void Array(int m, int n)
+{
+    int[,] matrix = new int[m, n];
+    for (int i = 0; i < matrix.GetLength(0); i++)
+    {
+        for (int j = 0; j < matrix.GetLength(1); j++)
+        {
+            matrix[i, j] = i+j;
+            Console.Write ($"{matrix[i,j]} ");
+        }
+        Console.WriteLine();
+    }
+}
+int dlinaRow = 3;
+int dlinaCol = 4;
+Array(dlinaRow, dlinaCol);
+*/
+//===================================================================================================================================================
+// Задача. Задайте двумерный массив. Найдите элементы, у которых оба индекса чётные, и замените эти элементы на их квадраты. В квадрат возводим значение элемента.
+/*
+void Array (int m, int n)
+{
+    int[,] matrix = new int[m, n];
+    for (int i = 0; i < matrix.GetLength(0); i++)
+    {
+        for (int j = 0; j < matrix.GetLength(1); j++)
+        {
+            matrix[i, j] = new Random().Next (2, 10);
+            Console.Write ($"{matrix[i,j]} ");
+        }
+        Console.WriteLine();
+    }
+
+    Console.WriteLine();
+
+    for (int i = 0; i < matrix.GetLength(0); i++)
+    {
+        for (int j = 0; j < matrix.GetLength(1); j++)
+        {
+            if (i % 2 == 0 && j % 2 == 0) matrix[i, j] = matrix[i, j] * matrix[i, j]; // эту строчку можно было сделать сразу в первом цикле после заполенния рандомом просто сделали в отдельном для проверки самих себя, тогда второй цикл нужно просто удалить.
+            Console.Write ($"{matrix [i,j]} ");
+        }
+        Console.WriteLine();
+    }
+}
+int dlinaRow = 3;
+int dlinaCol = 4;
+Array(dlinaRow, dlinaCol);
+*/
+//============================================================================================================================================
+// Задача. Задайте двумерный массив. Найдите сумму элементов, находящихся на главной диагонали (с индексами (0,0); (1;1) и т.д.). Массив при этом должен быть строго квадратным.
+/*
+void Array(int m)
+{
+    int sum = 0;
+    int[,] matrix = new int[m, m];
+    for (int i = 0; i < m; i++)
+    {
+        for (int j = 0; j < m; j++)
+        {
+            matrix [i, j] = new Random().Next (1, 10);
+            if (i == j) sum = sum + matrix[i, j];
+            Console.Write ($"{matrix[i,j]} ");
+        }
+        Console.WriteLine();
+    }
+    Console.WriteLine(sum);
+}
+int dlina = 3;
+
+Array(dlina);
+*/
+//===================================================================================================================================================
+// ДЗ семинар 7
+//================================================================================================================================================
+// Задача 1. Задайте двумерный массив размером m×n, заполненный случайными вещественными числами.
+/*
+void MassivMnVewestvennij(int m, int n)
+{
+    double[,] massiv = new double[m,n];
+    for (int i = 0; i < massiv.GetLength(0); i++)
+    {
+        for (int j = 0; j < massiv.GetLength(1); j++)
+        {
+            Random random = new Random();
+            massiv[i,j] = random.Next(-10,10) + random.NextDouble();
+            Console.Write($"{massiv[i,j]} "); 
+        }
+        Console.WriteLine();
+    }
+}
+
+Console.WriteLine("Введите число строк массива");
+int chisloCtrok = Convert.ToInt32(Console.ReadLine());
+Console.WriteLine("Введите число столбцов массива");
+int chisloCtolbcov = Convert.ToInt32(Console.ReadLine());
+
+MassivMnVewestvennij(chisloCtrok, chisloCtolbcov);
+*/
+//==============================================================================================================================================
+// Задача 2. Напишите программу, которая на вход принимает позиции элемента в двумерном массиве, и возвращает значение этого элемента или же указание, что такого элемента нет.
+/*
+void PoiskZnacheniyaElementaPoIndekcamMassiva(int ctrokiNomer, int kolonkiNomer)
+{
+    Random random = new Random();
+    int[,] massiv = new int[random.Next(1,11),random.Next(1,11)];
+
+    for (int i = 0; i < massiv.GetLength(0); i++)
+    {
+        for (int j = 0; j < massiv.GetLength(1); j++)
+        {
+            massiv[i,j] = random.Next(1,10);
+            Console.Write($"[{i},{j}]{massiv[i,j]} ");
+        }
+        Console.WriteLine();
+    }
+    
+    for (int i = 0; i < massiv.GetLength(0); i++)
+    {
+        for (int j = 0; j < massiv.GetLength(1); j++)
+        {
+            if(i == ctrokiNomer && j == kolonkiNomer) Console.WriteLine($"Значение элеметна с индексом Масссив[{ctrokiNomer},{kolonkiNomer}] = {massiv[i,j]}");
+            else if (ctrokiNomer > massiv.GetLength(0) - 1 || ctrokiNomer < 0 || kolonkiNomer > massiv.GetLength(1) - 1 || kolonkiNomer < 0)
+            {
+                Console.WriteLine($"Элемент с индексом Массив[{ctrokiNomer},{kolonkiNomer}] в массиве отсутствует");
+                break;
+            }
+        }
+        if (ctrokiNomer > massiv.GetLength(0) - 1 || ctrokiNomer < 0 || kolonkiNomer > massiv.GetLength(1) - 1 || kolonkiNomer < 0) break;
+    }
+}
+
+Console.WriteLine("Введите номер строки элемента массива");
+int nomerCtroki = Convert.ToInt32(Console.ReadLine());
+Console.WriteLine("Введите номер столбца элемента массива");
+int nomerCtolbca = Convert.ToInt32(Console.ReadLine());
+Console.WriteLine();
+
+PoiskZnacheniyaElementaPoIndekcamMassiva(nomerCtroki, nomerCtolbca);
+*/
+//==============================================================================================================================================
+// Задача 3. Задайте двумерный массив из целых чисел. Найдите среднее арифметическое элементов в каждом столбце.
+/*
+void PodschetCrednegoArifmeticheskogoCtolbcov()
+{
+    Random random = new Random();
+    int[,] massiv = new int[random.Next(1,11),random.Next(1,11)];
+
+    for (int i = 0; i < massiv.GetLength(0); i++)
+    {
+        for (int j = 0; j < massiv.GetLength(1); j++)
+        {
+            massiv[i,j] = random.Next(1,10);
+            Console.Write($"[{j}]{massiv[i,j]} ");
+        }
+        
+        Console.WriteLine();
+    }
+
+    double summaCtolbcov = 0;
+    double sredneeArifmeticheskoe = 0;
+    
+    Console.Write("Среднее арифметическое столбцов ");
+
+    for (int j = 0; j < massiv.GetLength(1); j++)
+    {
+        summaCtolbcov = 0;
+        sredneeArifmeticheskoe = 0;
+
+        for (int i = 0; i < massiv.GetLength(0); i++)
+        {
+            
+            summaCtolbcov = summaCtolbcov + massiv[i,j];
+        }
+        sredneeArifmeticheskoe = Math.Round((summaCtolbcov / massiv.GetLength(0)), 2);
+        Console.Write($"[{j}] = {sredneeArifmeticheskoe}, ");
+    }
+
+}
+
+PodschetCrednegoArifmeticheskogoCtolbcov();
+*/
+//=================================================================================================================================================
