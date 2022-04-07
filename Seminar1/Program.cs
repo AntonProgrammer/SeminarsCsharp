@@ -281,10 +281,10 @@ switch(NomerNedeli)
 int GetQuart(double xPoint, double yPoint)
 {
     if(xPoint > 0 && yPoint > 0) return 1;
-    if(xPoint < 0 && yPoint > 0) return 2;
-    if(xPoint < 0 && yPoint < 0) return 3;
-    if(xPoint > 0 && yPoint < 0) return 4;
-    return 0;
+        else if(xPoint < 0 && yPoint > 0) return 2;
+             else if(xPoint < 0 && yPoint < 0) return 3;
+                  else if(xPoint > 0 && yPoint < 0) return 4;
+                       else return 0;
 }
 double x, y;
 int quartNum;
@@ -1536,6 +1536,7 @@ MassivMnVewestvennij(chisloCtrok, chisloCtolbcov);
 */
 //==============================================================================================================================================
 // Задача 2. Напишите программу, которая на вход принимает позиции элемента в двумерном массиве, и возвращает значение этого элемента или же указание, что такого элемента нет.
+// Вариант 1
 /*
 void PoiskZnacheniyaElementaPoIndekcamMassiva(int ctrokiNomer, int kolonkiNomer)
 {
@@ -1564,6 +1565,50 @@ void PoiskZnacheniyaElementaPoIndekcamMassiva(int ctrokiNomer, int kolonkiNomer)
             }
         }
         if (ctrokiNomer > massiv.GetLength(0) - 1 || ctrokiNomer < 0 || kolonkiNomer > massiv.GetLength(1) - 1 || kolonkiNomer < 0) break;
+    }
+}
+
+Console.WriteLine("Введите номер строки элемента массива");
+int nomerCtroki = Convert.ToInt32(Console.ReadLine());
+Console.WriteLine("Введите номер столбца элемента массива");
+int nomerCtolbca = Convert.ToInt32(Console.ReadLine());
+Console.WriteLine();
+
+PoiskZnacheniyaElementaPoIndekcamMassiva(nomerCtroki, nomerCtolbca);
+*/
+// Вариант 2===================================================================================================================================
+/*
+void PoiskZnacheniyaElementaPoIndekcamMassiva(int ctrokiNomer, int kolonkiNomer)
+{
+    Random random = new Random();
+    int[,] massiv = new int[random.Next(1,11),random.Next(1,11)];
+
+    for (int i = 0; i < massiv.GetLength(0); i++)
+    {
+        for (int j = 0; j < massiv.GetLength(1); j++)
+        {
+            massiv[i,j] = random.Next(1,10);
+            Console.Write($"[{i},{j}]{massiv[i,j]} ");
+        }
+        Console.WriteLine();
+    }
+    
+    if (ctrokiNomer > massiv.GetLength(0) - 1 || ctrokiNomer < 0 || kolonkiNomer > massiv.GetLength(1) - 1 || kolonkiNomer < 0) Console.WriteLine($"Элемент с индексом Массив[{ctrokiNomer},{kolonkiNomer}] в массиве отсутствует");
+
+    int elementNaiden = 0;
+
+    for (int i = 0; i < massiv.GetLength(0); i++)
+    {
+        for (int j = 0; j < massiv.GetLength(1); j++)
+        {
+            if(i == ctrokiNomer && j == kolonkiNomer)
+            {
+                Console.WriteLine($"Значение элеметна с индексом Масссив[{ctrokiNomer},{kolonkiNomer}] = {massiv[i,j]}");
+                elementNaiden = 1;
+                break;
+            }
+        }
+        if (elementNaiden == 1) break;
     }
 }
 
@@ -1618,3 +1663,1133 @@ void PodschetCrednegoArifmeticheskogoCtolbcov()
 PodschetCrednegoArifmeticheskogoCtolbcov();
 */
 //=================================================================================================================================================
+// Задачи. Семинар 8.
+//==================================================================================================================================================
+// Задайте двумерный массив. Напишите программу, которая поменяет местами первую и последнюю строку массива.
+// Вариант 1
+/*
+void MassivRandom()
+{
+    Random random = new Random();
+
+    int[,] massiv = new int[random.Next(1, 10), random.Next(1, 10)];
+
+    Console.WriteLine($"Массив[{massiv.GetLength(0)},{massiv.GetLength(1)}]");
+
+    for (int i = 0; i < massiv.GetLength(0); i++)
+    {
+        for (int j = 0; j < massiv.GetLength(1); j++)
+        {
+            massiv[i,j] = random.Next(1, 10);
+            Console.Write($"{massiv[i,j]} ");
+        }
+
+        Console.WriteLine();
+    }
+
+    Console.WriteLine();
+
+    int[,] massivZamenaCtrok = new int[massiv.GetLength(0), massiv.GetLength(1)];
+
+    for (int i = 0; i < massivZamenaCtrok.GetLength(0); i++)
+    {
+        for (int j = 0; j < massivZamenaCtrok.GetLength(1); j++)
+        {
+            massivZamenaCtrok[i,j] = massiv[i,j];
+            if(i == 0) massivZamenaCtrok[0,j] = massiv[massiv.GetLength(0) - 1,j];
+            if(i == massiv.GetLength(0) - 1) massivZamenaCtrok[massiv.GetLength(0) - 1,j] = massiv[0,j];
+            Console.Write($"{massivZamenaCtrok[i,j]} ");
+        }
+
+        Console.WriteLine();
+    }
+}
+
+MassivRandom();
+*/
+// Вариант 2======================================================================================================================================
+/*
+int[,] CozdanieMassiva()
+{
+    Random random = new Random();
+    int[,] massiv = new int[random.Next(1, 5), random.Next(1, 5)];
+
+    for (int i = 0; i < massiv.GetLength(0); i++)
+    {
+        for (int j = 0; j < massiv.GetLength(1); j++)
+        {
+            massiv[i,j] = random.Next(1,9);
+        }
+    }
+
+    return massiv;
+}
+
+int[,] ZamenaPervojPoslednejCtrokiMassiva(int[,] massiv)
+{
+    int tmp = 0;
+
+    for (int i = 0; i < massiv.GetLength(1); i++)
+    {
+        tmp = massiv[0,i];
+        massiv[0,i] = massiv[massiv.GetLength(0) - 1, i];
+        massiv[massiv.GetLength(0) - 1, i] = tmp;
+
+    }
+
+    return massiv;
+}
+
+void Print2DMassiv(int[,] massiv)
+{
+    for (int i = 0; i < massiv.GetLength(0); i++)
+    {
+        for (int j = 0; j < massiv.GetLength(1); j++)
+        {
+            Console.Write($"{massiv[i,j]} ");
+        }
+
+        Console.WriteLine();
+    }
+}
+
+int[,] massivNaIzmenenie = CozdanieMassiva();
+
+Print2DMassiv(massivNaIzmenenie);
+Console.WriteLine();
+Print2DMassiv(ZamenaPervojPoslednejCtrokiMassiva(massivNaIzmenenie));
+*/
+//=============================================================================================================================================
+// Задайте двумерный массив. Напишите программу, которая заменяет строки на столбцы. В случае, если это невозможно, программа должна вывести сообщение для пользователя.
+// Вариант 1
+/*
+void MassivRandom()
+{
+    Random random = new Random();
+
+    int[,] massiv = new int[random.Next(1, 5), random.Next(1, 5)];
+
+    if (massiv.GetLength(0) != massiv.GetLength(1)) Console.WriteLine($"Массив[{massiv.GetLength(0)},{massiv.GetLength(1)}] не является квадратным и заменить строки и столбцы невозможно");
+    else
+    {
+        Console.WriteLine($"Массив[{massiv.GetLength(0)},{massiv.GetLength(1)}]");
+
+        for (int i = 0; i < massiv.GetLength(0); i++)
+        {
+            for (int j = 0; j < massiv.GetLength(1); j++)
+            {
+                massiv[i,j] = random.Next(1, 10);
+                Console.Write($"{massiv[i,j]} ");
+            }
+
+            Console.WriteLine();
+        }
+
+        Console.WriteLine();
+
+        int[,] massivZamenaCtrok = new int[massiv.GetLength(0), massiv.GetLength(1)];
+
+        for (int i = 0; i < massivZamenaCtrok.GetLength(0); i++)
+        {
+            for (int j = 0; j < massivZamenaCtrok.GetLength(1); j++)
+            {
+                massivZamenaCtrok[j,i] = massiv[i,j]; // если стразу выводить на экран то будут нули так как элементы ещё не все заполненны которые мы меняем в массив е massivZamenaCtrok[i,j] а уже выводим их на экран
+            }
+        }
+
+        for (int i = 0; i < massivZamenaCtrok.GetLength(0); i++)
+        {
+            for (int j = 0; j < massivZamenaCtrok.GetLength(1); j++)
+            {
+                Console.Write($"{massivZamenaCtrok[i,j]} ");
+            }
+
+            Console.WriteLine();
+        }
+    }
+}
+
+MassivRandom();
+*/
+//Вариант 2=======================================================================================================================================
+/*
+void MassivRandom()
+{
+    Random random = new Random();
+
+    int[,] massiv = new int[random.Next(1, 5), random.Next(1, 5)];
+
+    if (massiv.GetLength(0) != massiv.GetLength(1)) Console.WriteLine($"Массив[{massiv.GetLength(0)},{massiv.GetLength(1)}] не является квадратным и заменить строки и столбцы невозможно");
+    else
+    {
+        Console.WriteLine($"Массив[{massiv.GetLength(0)},{massiv.GetLength(1)}]");
+
+        for (int i = 0; i < massiv.GetLength(0); i++)
+        {
+            for (int j = 0; j < massiv.GetLength(1); j++)
+            {
+                massiv[i,j] = random.Next(1, 10);
+                Console.Write($"{massiv[i,j]} ");
+            }
+
+            Console.WriteLine();
+        }
+
+        Console.WriteLine();
+
+        int[,] massivZamenaCtrok = new int[massiv.GetLength(0), massiv.GetLength(1)];
+
+        for (int i = 0; i < massivZamenaCtrok.GetLength(0); i++)
+        {
+            for (int j = 0; j < massivZamenaCtrok.GetLength(1); j++)
+            {
+                massivZamenaCtrok[i,j] = massiv[j,i];
+                Console.Write($"{massivZamenaCtrok[i,j]} ");
+            }
+
+            Console.WriteLine();
+        }
+
+    }
+}
+
+MassivRandom();
+*/
+// Вариант 3====================================================================================================================================
+/*
+int[,] CozdanieMassiva()
+{
+    Random random = new Random();
+    int[,] massiv = new int[random.Next(1, 5), random.Next(1, 5)];
+
+    for (int i = 0; i < massiv.GetLength(0); i++)
+    {
+        for (int j = 0; j < massiv.GetLength(1); j++)
+        {
+            massiv[i,j] = random.Next(1,9);
+        }
+    }
+
+    return massiv;
+}
+
+int[,] ZamenaVcexCtrokCtolbcovMassivaMestami(int[,] massiv)
+{
+    if(massiv.GetLength(0) == massiv.GetLength(1))
+    {
+        int tmp = 0;
+        for (int i = 0; i < massiv.GetLength(0); i++)
+        {
+            for (int j = i; j < massiv.GetLength(1); j++)
+            {
+                tmp = massiv[i,j];
+                massiv[i,j] = massiv[j,i];
+                massiv[j,i] = tmp;
+            }
+        }
+    }
+    else Console.WriteLine($"Массив[{massiv.GetLength(0)},{massiv.GetLength(1)}] не является квадратным и заменить строки и столбцы невозможно");
+    
+    return massiv;
+}
+
+void Print2DMassiv(int[,] massiv)
+{
+    for (int i = 0; i < massiv.GetLength(0); i++)
+    {
+        for (int j = 0; j < massiv.GetLength(1); j++)
+        {
+            Console.Write($"{massiv[i,j]} ");
+        }
+
+        Console.WriteLine();
+    }
+}
+
+int[,] massivNaIzmenenie = CozdanieMassiva();
+
+Print2DMassiv(massivNaIzmenenie);
+Console.WriteLine();
+Print2DMassiv(ZamenaVcexCtrokCtolbcovMassivaMestami(massivNaIzmenenie));
+*/
+// Вариант 4=======================================================================================================================================
+/*
+int[,] CozdanieMassiva()
+{
+    Random random = new Random();
+    int[,] massiv = new int[random.Next(1, 5), random.Next(1, 5)];
+
+    for (int i = 0; i < massiv.GetLength(0); i++)
+    {
+        for (int j = 0; j < massiv.GetLength(1); j++)
+        {
+            massiv[i,j] = random.Next(1,9);
+        }
+    }
+
+    return massiv;
+}
+
+int[,] ZamenaVcexCtrokCtolbcovMassivaMestami(int[,] massiv)
+{
+    int tmp = 0;
+    for (int i = 0; i < massiv.GetLength(0); i++)
+    {
+        for (int j = i; j < massiv.GetLength(1); j++)
+        {
+            tmp = massiv[i,j];
+            massiv[i,j] = massiv[j,i];
+            massiv[j,i] = tmp;
+        }
+    }
+    
+    return massiv;
+}
+
+void Print2DMassiv(int[,] massiv)
+{
+    for (int i = 0; i < massiv.GetLength(0); i++)
+    {
+        for (int j = 0; j < massiv.GetLength(1); j++)
+        {
+            Console.Write($"{massiv[i,j]} ");
+        }
+
+        Console.WriteLine();
+    }
+}
+
+int[,] massivNaIzmenenie = CozdanieMassiva();
+
+if(massivNaIzmenenie.GetLength(0) != massivNaIzmenenie.GetLength(1)) Console.WriteLine($"Массив[{massivNaIzmenenie.GetLength(0)},{massivNaIzmenenie.GetLength(1)}] не является квадратным и заменить строки и столбцы невозможно");
+else
+{
+    Print2DMassiv(massivNaIzmenenie);
+    Console.WriteLine();
+    Print2DMassiv(ZamenaVcexCtrokCtolbcovMassivaMestami(massivNaIzmenenie));
+}
+*/
+//=============================================================================================================================================
+// Из двумерного массива целых чисел удалить строку и столбец, на пересечении которых расположен наименьший элемент. (Заполнить нулями эти строки а не удалять)
+/*
+int[,] CozdanieMassiva()
+{
+    Random random = new Random();
+    int[,] massiv = new int[random.Next(1, 5), random.Next(1, 5)];
+
+    for (int i = 0; i < massiv.GetLength(0); i++)
+    {
+        for (int j = 0; j < massiv.GetLength(1); j++)
+        {
+            massiv[i,j] = random.Next(1,9);
+        }
+    }
+
+    return massiv;
+}
+
+int[,] UdalenieCtrokiCtolbcaNaimenwegoElementaMassiva(int[,] massiv)
+{
+    int indexMinI = 0;
+    int indexMinJ = 0;
+    int minElement = massiv[0,0];
+
+    for (int i = 0; i < massiv.GetLength(0); i++)
+    {
+        for (int j = 0; j < massiv.GetLength(1); j++)
+        {
+            if(massiv[i,j] < minElement)
+            {
+                minElement = massiv[i,j];
+                indexMinI = i;
+                indexMinJ = j;
+            }
+        }
+    }
+
+    for (int i = 0; i < massiv.GetLength(0); i++)
+    {
+        massiv[i,indexMinJ] = 0;
+    }
+
+    for (int j = 0; j < massiv.GetLength(1); j++)
+    {
+        massiv[indexMinI,j] = 0;
+    }
+
+    return massiv;
+}
+
+void Print2DMassiv(int[,] massiv)
+{
+    for (int i = 0; i < massiv.GetLength(0); i++)
+    {
+        for (int j = 0; j < massiv.GetLength(1); j++)
+        {
+            Console.Write($"{massiv[i,j]} ");
+        }
+
+        Console.WriteLine();
+    }
+}
+
+int[,] massivNaIzmenenie = CozdanieMassiva();
+
+Print2DMassiv(massivNaIzmenenie);
+Console.WriteLine();
+Print2DMassiv(UdalenieCtrokiCtolbcaNaimenwegoElementaMassiva(massivNaIzmenenie));
+*/
+//========================================================================================================================================
+// ДЗ Семинар 8
+//========================================================================================================================================
+// Задача 1. Задайте двумерный массив. Напишите программу, которая упорядочит по убыванию элементы каждой строки двумерного массива.
+// Вариант 1 Сартировка по возрастанию
+/*
+int[,] CozdanieMassiva()
+{
+    Random random = new Random();
+   
+    int[,] massiv = new int[random.Next(1, 5), random.Next(1, 5)];
+
+    for (int i = 0; i < massiv.GetLength(0); i++)
+    {
+        for (int j = 0; j < massiv.GetLength(1); j++)
+        {
+            massiv[i,j] = random.Next(1,9);
+        }
+    }
+
+    return massiv;
+}
+
+void Print2DMassiv(int[,] massiv)
+{
+    for (int i = 0; i < massiv.GetLength(0); i++)
+    {
+        for (int j = 0; j < massiv.GetLength(1); j++)
+        {
+            Console.Write($"{massiv[i,j]} ");
+        }
+
+        Console.WriteLine();
+    }
+}
+
+int[,] SortirovkaStrokMassiva(int[,] massiv)
+{
+    int tmp = 0;
+        
+    for (int i = 0; i < massiv.GetLength(0); i++)
+    {
+        int indexMinI = i;
+        int indexMinJ = 0;
+
+        for (int j = 0; j < massiv.GetLength(1) - 1; j++)
+        {   
+            indexMinI = i;
+            indexMinJ = j;
+            for (int k = j + 1; k < massiv.GetLength(1); k++)
+            {
+                 
+                if(massiv[i,k] < massiv[indexMinI,indexMinJ])
+                {
+                    indexMinI = i;
+                    indexMinJ = k;
+                }
+            }
+
+            tmp = massiv[i,j];
+            massiv[i,j] = massiv[indexMinI,indexMinJ];
+            massiv[indexMinI,indexMinJ] = tmp;
+            
+        }
+
+    }
+
+    return massiv;
+}
+
+int[,] massivNaIzmenenie = CozdanieMassiva();
+
+Print2DMassiv(massivNaIzmenenie);
+Console.WriteLine();
+Print2DMassiv(SortirovkaStrokMassiva(massivNaIzmenenie));
+*/
+// Вариант 2 Сартировка по убыванию==========================================================================================================
+/*
+int[,] CozdanieMassiva()
+{
+    Random random = new Random();
+   
+    int[,] massiv = new int[random.Next(1, 5), random.Next(1, 5)];
+
+    for (int i = 0; i < massiv.GetLength(0); i++)
+    {
+        for (int j = 0; j < massiv.GetLength(1); j++)
+        {
+            massiv[i,j] = random.Next(1,9);
+        }
+    }
+
+    return massiv;
+}
+
+void Print2DMassiv(int[,] massiv)
+{
+    for (int i = 0; i < massiv.GetLength(0); i++)
+    {
+        for (int j = 0; j < massiv.GetLength(1); j++)
+        {
+            Console.Write($"{massiv[i,j]} ");
+        }
+
+        Console.WriteLine();
+    }
+}
+
+int[,] SortirovkaStrokMassiva(int[,] massiv)
+{
+    int tmp = 0;
+        
+    for (int i = 0; i < massiv.GetLength(0); i++)
+    {
+        int indexMinI = i;
+        int indexMinJ = 0;
+
+        for (int j = 0; j < massiv.GetLength(1) - 1; j++)
+        {   
+            indexMinI = i;
+            indexMinJ = j;
+            for (int k = j + 1; k < massiv.GetLength(1); k++)
+            {
+                 
+                if(massiv[i,k] > massiv[indexMinI,indexMinJ])
+                {
+                    indexMinI = i;
+                    indexMinJ = k;
+                }
+            }
+
+            tmp = massiv[i,j];
+            massiv[i,j] = massiv[indexMinI,indexMinJ];
+            massiv[indexMinI,indexMinJ] = tmp;
+            
+        }
+
+    }
+
+    return massiv;
+}
+
+int[,] massivNaIzmenenie = CozdanieMassiva();
+
+Print2DMassiv(massivNaIzmenenie);
+Console.WriteLine();
+Print2DMassiv(SortirovkaStrokMassiva(massivNaIzmenenie));
+*/
+//============================================================================================================================================
+// Задача 4. Заполните спирально массив 4 на 4.
+// Вариант 1 для квадратной матрицы
+/*
+int[,] CozdanieMassiva()
+{
+    Random random = new Random();
+
+    int[,] massiv = new int[4, 4];
+
+    return massiv;
+}
+
+void Print2DMassiv(int[,] massiv)
+{
+    for (int i = 0; i < massiv.GetLength(0); i++)
+    {
+        for (int j = 0; j < massiv.GetLength(1); j++)
+        {
+            Console.Write($"{massiv[i, j]} ");
+        }
+
+        Console.WriteLine();
+    }
+}
+
+int[,] ZapolnenieMassivaPoCpirali(int[,] massiv)
+{
+    int chisloZapolnenie = 1;
+    
+    for (int cdvig = 0; cdvig < massiv.GetLength(0) - 2; cdvig++)
+    {
+          for (int i = 0 + cdvig; i < massiv.GetLength(1) - cdvig; i++)
+        {
+            massiv[0 + cdvig, i] = chisloZapolnenie;
+            chisloZapolnenie++;
+        }
+
+        chisloZapolnenie--;
+
+        for (int i = 0 + cdvig; i < massiv.GetLength(0) - cdvig; i++)
+        {
+            massiv[i, 3 - cdvig] = chisloZapolnenie;
+            chisloZapolnenie++;
+        }
+
+        chisloZapolnenie--;
+
+        for (int i = massiv.GetLength(1) - 1 - cdvig; i >= 0 + cdvig; i--)
+        {
+            massiv[3 - cdvig, i] = chisloZapolnenie;
+            chisloZapolnenie++;
+        }
+
+        chisloZapolnenie--;
+
+        for (int i = massiv.GetLength(0) - 1 - cdvig; i >= 1 + cdvig; i--)
+        {
+            massiv[i, 0 + cdvig] = chisloZapolnenie;
+            chisloZapolnenie++;
+        }
+    }
+
+    return massiv;
+}
+
+
+
+int[,] massivNaIzmenenie = CozdanieMassiva();
+
+Print2DMassiv(ZapolnenieMassivaPoCpirali(massivNaIzmenenie));
+*/
+// Вариант 2 для любой двумерной матрицы=================================================================================================
+/*
+int[,] CozdanieMassiva()
+{
+    Random random = new Random();
+
+    int[,] massiv = new int[random.Next(1, 10), random.Next(1, 10)];
+
+    return massiv;
+}
+
+void Print2DMassiv(int[,] massiv)
+{
+    for (int i = 0; i < massiv.GetLength(0); i++)
+    {
+        for (int j = 0; j < massiv.GetLength(1); j++)
+        {
+            Console.Write($"{massiv[i, j]} ");
+        }
+
+        Console.WriteLine();
+    }
+}
+
+int[,] ZapolnenieMassivaPoCpirali(int[,] massiv)
+{
+
+    Console.WriteLine($"Массив[{massiv.GetLength(0)},{massiv.GetLength(1)}]");
+    int chisloZapolnenie = 1;
+    int kolichestvoCdvigov = 0;
+    int kolichestvoElementovMassiva = massiv.GetLength(1) * massiv.GetLength(0);
+    int counterChisloElementovZapolneniya = 0;
+
+    if (massiv.GetLength(0) < massiv.GetLength(1) && massiv.GetLength(0) % 2 == 0) kolichestvoCdvigov = massiv.GetLength(0) / 2;
+    if (massiv.GetLength(1) < massiv.GetLength(0) && massiv.GetLength(1) % 2 == 0) kolichestvoCdvigov = massiv.GetLength(1) / 2;
+    if (massiv.GetLength(0) < massiv.GetLength(1) && massiv.GetLength(0) % 2 != 0) kolichestvoCdvigov = (massiv.GetLength(0) / 2) + 1;
+    if (massiv.GetLength(1) < massiv.GetLength(0) && massiv.GetLength(1) % 2 != 0) kolichestvoCdvigov = (massiv.GetLength(1) / 2) + 1;
+    if (massiv.GetLength(0) == massiv.GetLength(1) && massiv.GetLength(0) % 2 == 0) kolichestvoCdvigov = massiv.GetLength(0) / 2;
+    if (massiv.GetLength(0) == massiv.GetLength(1) && massiv.GetLength(0) % 2 != 0) kolichestvoCdvigov = (massiv.GetLength(0) / 2) + 1;
+
+    for (int cdvig = 0; cdvig < kolichestvoCdvigov; cdvig++)
+    {
+        for (int i = 0 + cdvig; i < massiv.GetLength(1) - cdvig; i++)
+        {
+            massiv[0 + cdvig, i] = chisloZapolnenie;
+            chisloZapolnenie++;
+            counterChisloElementovZapolneniya++;
+            if (counterChisloElementovZapolneniya == kolichestvoElementovMassiva) break;
+        }
+
+        counterChisloElementovZapolneniya--;
+        chisloZapolnenie--;
+
+        for (int i = 0 + cdvig; i < massiv.GetLength(0) - cdvig; i++)
+        {
+            massiv[i, massiv.GetLength(1) - 1 - cdvig] = chisloZapolnenie;
+            chisloZapolnenie++;
+            counterChisloElementovZapolneniya++;
+            if (counterChisloElementovZapolneniya == kolichestvoElementovMassiva) break;
+        }
+
+        counterChisloElementovZapolneniya--;
+        chisloZapolnenie--;
+
+        for (int i = massiv.GetLength(1) - 1 - cdvig; i >= 0 + cdvig; i--)
+        {
+            massiv[massiv.GetLength(0) - 1 - cdvig, i] = chisloZapolnenie;
+            chisloZapolnenie++;
+            counterChisloElementovZapolneniya++;
+            if (counterChisloElementovZapolneniya == kolichestvoElementovMassiva) break;
+        }
+
+        counterChisloElementovZapolneniya--;
+        chisloZapolnenie--;
+
+        for (int i = massiv.GetLength(0) - 1 - cdvig; i >= 1 + cdvig; i--)
+        {
+            massiv[i, 0 + cdvig] = chisloZapolnenie;
+            chisloZapolnenie++;
+            counterChisloElementovZapolneniya++;
+            if (counterChisloElementovZapolneniya == kolichestvoElementovMassiva) break;
+        }
+
+        if (counterChisloElementovZapolneniya == kolichestvoElementovMassiva) break;
+    }
+
+    return massiv;
+}
+
+
+
+int[,] massivNaIzmenenie = CozdanieMassiva();
+
+Print2DMassiv(ZapolnenieMassivaPoCpirali(massivNaIzmenenie));
+*/
+// Вариант 3 для любой двумерной матрицы=================================================================================================
+/*
+int[,] CozdanieMassiva()
+{
+    Random random = new Random();
+    int[,] massiv = new int[random.Next(2,10),random.Next(2,10)];
+
+    return massiv;
+}
+
+void Print2DMassiv(int[,] massiv)
+{
+    for (int i = 0; i < massiv.GetLength(0); i++)
+    {
+        for (int j = 0; j < massiv.GetLength(1); j++)
+        {
+            Console.Write($"{massiv[i, j]} ");
+        }
+
+        Console.WriteLine();
+    }
+}
+
+int[,] ZapolnenieMassivaPoCpirali(int[,] massiv)
+{
+    int counter = 1;
+    int zapolnenieKolonokClevaNapravo = 0;
+    int zapolnenieKolonokCpravoNalevo = massiv.GetLength(1) - 1;
+    int zapolnenieCtrokCverxuVniz = 0;
+    int zapolnenieCtrokCnizuVverx = massiv.GetLength(0) - 1;
+    int kolichestvoElementovMassiva = massiv.GetLength(1) * massiv.GetLength(0);
+    int counterChisloElementovZapolneniya = 1;
+
+    while (zapolnenieKolonokClevaNapravo <= zapolnenieKolonokCpravoNalevo && zapolnenieCtrokCverxuVniz <= zapolnenieCtrokCnizuVverx)
+    {
+        if(counterChisloElementovZapolneniya == kolichestvoElementovMassiva) break;
+
+        for (int i = zapolnenieKolonokClevaNapravo; i <= zapolnenieKolonokCpravoNalevo; i++)
+        {
+            massiv[zapolnenieCtrokCverxuVniz,i] = counter;
+            counter++;
+            counterChisloElementovZapolneniya++;
+
+        }
+        zapolnenieCtrokCverxuVniz++;
+
+        if(counterChisloElementovZapolneniya == kolichestvoElementovMassiva) break;
+
+        for (int i = zapolnenieCtrokCverxuVniz; i <= zapolnenieCtrokCnizuVverx; i++)
+        {
+            massiv[i,zapolnenieKolonokCpravoNalevo] = counter;
+            counter++;
+            counterChisloElementovZapolneniya++;
+        }
+        zapolnenieKolonokCpravoNalevo--;
+
+        if(counterChisloElementovZapolneniya == kolichestvoElementovMassiva) break;
+
+        for (int i = zapolnenieKolonokCpravoNalevo; i >= zapolnenieKolonokClevaNapravo; i--)
+        {
+            massiv[zapolnenieCtrokCnizuVverx,i] = counter;
+            counter++;
+            counterChisloElementovZapolneniya++;
+        }
+        zapolnenieCtrokCnizuVverx--;
+
+        if(counterChisloElementovZapolneniya == kolichestvoElementovMassiva) break;
+
+        for (int i = zapolnenieCtrokCnizuVverx; i >= zapolnenieCtrokCverxuVniz; i--)
+        {
+            massiv[i,zapolnenieKolonokClevaNapravo] = counter;
+            counter++;
+            counterChisloElementovZapolneniya++;
+        }
+        zapolnenieKolonokClevaNapravo++;
+
+        if(counterChisloElementovZapolneniya == kolichestvoElementovMassiva) break;
+    }
+
+    Console.WriteLine($"{kolichestvoElementovMassiva}   {counterChisloElementovZapolneniya} ");
+    return massiv;
+    
+}
+
+int[,] massivNaIzmenenie = CozdanieMassiva();
+
+Print2DMassiv(massivNaIzmenenie);
+Console.WriteLine();
+Print2DMassiv(ZapolnenieMassivaPoCpirali(massivNaIzmenenie));
+*/
+//=========================================================================================================================================
+// Задача 3: Сформируйте трёхмерный массив из неповторяющихся двузначных чисел. Напишите программу, которая будет построчно выводить массив, добавляя индексы каждого элемента.
+// Вариант 1 для трёхмерного массива
+/*
+int[,,] Cozdanie3MernogoMassiva()
+{
+    Random random = new Random();
+    int[,,] massiv = new int[random.Next(1, 4), random.Next(1, 4), random.Next(1, 4)];
+    Console.WriteLine($"Массив[{massiv.GetLength(0)},{massiv.GetLength(1)},{massiv.GetLength(2)}]");
+
+    int kolichestvoZapolnennix = 0;
+    int kolichestvoProverennixElementov = 0;
+    int kolichestvoElementov = massiv.GetLength(0) * massiv.GetLength(1) * massiv.GetLength(2);
+
+    for (int i = 0; i < massiv.GetLength(0); i++)
+    {
+        for (int j = 0; j < massiv.GetLength(1); j++)
+        {
+            for (int k = 0; k < massiv.GetLength(2); k++)
+            {
+                bool unikalnoeZnachenie;
+
+                kolichestvoZapolnennix++;
+
+                do
+                {
+                    kolichestvoProverennixElementov = kolichestvoZapolnennix;
+
+                    massiv[i,j,k] = random.Next(1, (massiv.GetLength(0) * massiv.GetLength(1) * massiv.GetLength(2)) + 1);
+
+                    unikalnoeZnachenie = true;
+
+                    for (int l = 0; l < massiv.GetLength(0); l++)
+                    {
+                        for (int m = 0; m < massiv.GetLength(1); m++)
+                        {
+                            for (int n = 0; n < massiv.GetLength(2); n++)
+                            {
+                                kolichestvoProverennixElementov--;
+
+                                if (kolichestvoProverennixElementov == 0) break;
+                                if (massiv[i, j, k] == massiv[l, m, n])
+                                {
+                                    unikalnoeZnachenie = false;
+                                    break;
+                                }
+                            }
+
+                            if (unikalnoeZnachenie == false) break;
+                            if (kolichestvoProverennixElementov == 0) break;
+                        }
+
+                        if (unikalnoeZnachenie == false) break;
+                        if (kolichestvoProverennixElementov == 0) break;
+                    }
+
+                    if (kolichestvoProverennixElementov == 0) break;
+
+                } while (!unikalnoeZnachenie);
+
+                if (kolichestvoZapolnennix == kolichestvoElementov) break;
+            }
+
+            if (kolichestvoZapolnennix == kolichestvoElementov) break;
+        }
+
+        if (kolichestvoZapolnennix == kolichestvoElementov) break;
+    }
+
+    return massiv;
+}
+
+void Pechat3MernogoMassiva(int[,,] massiv)
+{
+    for (int i = 0; i < massiv.GetLength(0); i++)
+    {
+        for (int j = 0; j < massiv.GetLength(1); j++)
+        {
+            for (int k = 0; k < massiv.GetLength(2); k++)
+            {
+                Console.Write($"{massiv[i, j, k]}[{i},{j},{k}] ");
+            }
+
+            Console.WriteLine();
+        }
+
+        Console.WriteLine();
+    }
+}
+
+Pechat3MernogoMassiva(Cozdanie3MernogoMassiva());
+*/
+// Вариант 2 для двумерного масссива
+/*
+int[,] Cozdanie3MernogoMassiva()
+{
+    Random random = new Random();
+    int[,] massiv = new int[random.Next(1, 11), random.Next(1, 11)];
+    Console.WriteLine($"Массив[{massiv.GetLength(0)},{massiv.GetLength(1)}]");
+
+    int kolichestvoZapolnennix = 0;
+    int kolichestvoProverennixElementov = 0;
+    int kolichestvoElementov = massiv.GetLength(0) * massiv.GetLength(1);
+
+    for (int i = 0; i < massiv.GetLength(0); i++)
+    {
+        for (int j = 0; j < massiv.GetLength(1); j++)
+        {
+            bool unikalnoeZnachenie;
+
+            kolichestvoZapolnennix++;
+
+            do
+            {
+                kolichestvoProverennixElementov = kolichestvoZapolnennix;
+
+                massiv[i, j] = random.Next(1, (massiv.GetLength(0) * massiv.GetLength(1)) + 1);
+
+                unikalnoeZnachenie = true;
+
+                for (int l = 0; l < massiv.GetLength(0); l++)
+                {
+                    for (int m = 0; m < massiv.GetLength(1); m++)
+                    {
+                        kolichestvoProverennixElementov--;
+
+                        if (kolichestvoProverennixElementov == 0) break;
+                        if (massiv[i, j] == massiv[l, m])
+                        {
+                            unikalnoeZnachenie = false;
+                            break;
+                        }
+                    }
+
+                    if (unikalnoeZnachenie == false) break;
+                    if (kolichestvoProverennixElementov == 0) break;
+                }
+
+                if (kolichestvoProverennixElementov == 0) break;
+
+            } while (!unikalnoeZnachenie);
+
+            if (kolichestvoZapolnennix == kolichestvoElementov) break;
+            if (kolichestvoZapolnennix == kolichestvoElementov) break;
+        }
+
+        if (kolichestvoZapolnennix == kolichestvoElementov) break;
+    }
+
+    return massiv;
+}
+
+void Pechat3MernogoMassiva(int[,] massiv)
+{
+    for (int i = 0; i < massiv.GetLength(0); i++)
+    {
+        for (int j = 0; j < massiv.GetLength(1); j++)
+        {
+            Console.Write($"{massiv[i, j]}[{i},{j}] ");
+        }
+
+        Console.WriteLine();
+    }
+}
+
+Pechat3MernogoMassiva(Cozdanie3MernogoMassiva());
+*/
+// Вариант 3 для одномерного массива==================================================================================================
+/*
+int[] Cozdanie3MernogoMassiva()
+{
+    Random random = new Random();
+    int[] massiv = new int[random.Next(1, 11)];
+    Console.WriteLine($"Массив[{massiv.GetLength(0)}]");
+
+    for (int i = 0; i < massiv.GetLength(0); i++)
+    {
+        bool unikalnoeZnachenie;
+
+        do
+        {
+            massiv[i] = random.Next(1, massiv.GetLength(0) + 1);
+
+            unikalnoeZnachenie = true;
+
+            for (int j = 0; j < i; j++)
+            {
+                if (massiv[i] == massiv[j])
+                {
+                    unikalnoeZnachenie = false;
+                    break;
+                }
+            }
+
+        } while (!unikalnoeZnachenie);
+    }
+
+    return massiv;
+}
+
+void Pechat3MernogoMassiva(int[] massiv)
+{
+    for (int i = 0; i < massiv.GetLength(0); i++)
+    {
+        Console.Write($"{massiv[i]}[{i}] ");
+    }
+}
+
+Pechat3MernogoMassiva(Cozdanie3MernogoMassiva());
+*/
+//===========================================================================================================================================
+// Задача 2: Задайте прямоугольный двумерный массив. Напишите программу, которая будет находить строку с наименьшей суммой элементов.
+/*
+int[,] CozdanieDvemernogoMassiva()
+{
+    Random random = new Random();
+
+    int[,] massiv = new int[random.Next(1,10),random.Next(1,5)]; // { { 9, 1, 2 }, { 1, 8, 3 }, { 5, 1, 10 }, { 6, 3, 3 } };//
+
+    for (int i = 0; i < massiv.GetLength(0); i++)
+    {
+        for (int j = 0; j < massiv.GetLength(1); j++)
+        {
+            massiv[i,j] = random.Next(1,10);
+        }
+    }
+
+    return massiv;
+}
+
+void Pechat2DMassiva(int[,] massiv)
+{
+    for (int i = 0; i < massiv.GetLength(0); i++)
+    {
+        for (int j = 0; j < massiv.GetLength(1); j++)
+        {
+            Console.Write($"{massiv[i, j]} ");
+        }
+
+        Console.WriteLine();
+    }
+}
+
+void NaxogdenieMinSummiElementovCtroki(int[,] massiv)
+{
+    int summaElementov = int.MaxValue;
+    int summaElementovTmp = 0;
+    int minCtroka = 0;
+    int kolichestvoMinCtrokBolwe1 = 0;
+
+    for (int i = 0; i < massiv.GetLength(0); i++)
+    {
+        summaElementovTmp = 0;
+        for (int j = 0; j < massiv.GetLength(1); j++)
+        {
+            summaElementovTmp = summaElementovTmp + massiv[i, j];
+        }
+        if (summaElementovTmp < summaElementov)
+        {
+            summaElementov = summaElementovTmp;
+            minCtroka = i;
+        }
+    }
+
+    for (int i = 0; i < massiv.GetLength(0); i++)
+    {
+        summaElementovTmp = 0;
+        for (int j = 0; j < massiv.GetLength(1); j++)
+        {
+            summaElementovTmp = summaElementovTmp + massiv[i, j];
+        }
+        if (summaElementovTmp == summaElementov) kolichestvoMinCtrokBolwe1 = 1;
+    }
+
+    if (kolichestvoMinCtrokBolwe1 == 1)
+    {
+        for (int i = 0; i < massiv.GetLength(0); i++)
+        {
+            summaElementovTmp = 0;
+            for (int j = 0; j < massiv.GetLength(1); j++)
+            {
+                summaElementovTmp = summaElementovTmp + massiv[i, j];
+            }
+            if (summaElementovTmp == summaElementov)
+            {
+                summaElementov = summaElementovTmp;
+                minCtroka = i;
+                Console.Write($"Строка[{minCtroka}] ");
+            }
+            else if (kolichestvoMinCtrokBolwe1 == 0) Console.WriteLine($"Строка[{minCtroka}]");
+        }
+    }
+}
+
+int[,] massivNew = CozdanieDvemernogoMassiva();
+Pechat2DMassiva(massivNew);
+
+NaxogdenieMinSummiElementovCtroki(massivNew);
+
+*/
+//=========================================================================================================================================
+// Задачи. Семинар 9.
+//=========================================================================================================================================
+// Задача. Напишите программу, которая найдёт точку пересечения двух прямых, заданных уравнениями y = k1 * x + b1, y = k2 * x + b2; значения b1, k1, b2 и k2 задаются пользователем. b1 = 2, k1 = 5, b2 = 4, k2 = 9 -> (-0,5; 5,5)
+/*
+void NaxogdeniePereceheniyaPryamix(double k1Chislo, double k2Chislo, double b1Chislo, double b2Chislo)
+{
+    double x = (b2Chislo - b1Chislo) / (k1Chislo - k2Chislo);
+    double y = (k1Chislo * x) + b1Chislo;
+
+    Console.WriteLine($"Координата у = {x}, х = {y}");
+}
+
+Console.WriteLine("Введите коэффециент k1 первой прямой");
+double k1 = Convert.ToDouble(Console.ReadLine());
+Console.WriteLine("Введите коэффециент k2 второй прямой");
+double k2 = Convert.ToDouble(Console.ReadLine());
+Console.WriteLine("Введите коэффециент b1 первой прямой");
+double b1 = Convert.ToDouble(Console.ReadLine());
+Console.WriteLine("Введите коэффециент b2 второй прямой");
+double b2 = Convert.ToDouble(Console.ReadLine());
+
+NaxogdeniePereceheniyaPryamix(k1, k2, b1, b2);
+*/
+//=============================================================================================================================================
+// Задача Показать треугольник Паскаля. Сделать вывод в виде равнобедренного треугольника.
+/*
+Console.WriteLine("Введите порядок степени для треугольника");
+int num = Convert.ToInt32(Console.ReadLine());
+
+for (int i = 0; i < num; i++)
+{
+    for (int j = num; j > i + 1; j--) // или for (int j = 0; j > i; j--) чтоб был не в виде треугольника или for (int j = num; j > i + 1; j--) чтоб начинались слева сразу без пробела
+    {
+        Console.Write(" ");
+    }
+
+    int val = 1;
+
+    for (int j = 0; j <= i; j++)
+    {
+        Console.Write(val + " ");
+        val = (val * (i - j)) / (j + 1);
+    }
+
+    Console.WriteLine();
+}
+*/
+//================================================================================================================================================
