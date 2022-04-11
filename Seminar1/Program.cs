@@ -1110,7 +1110,7 @@ int ctotonaC = Convert.ToInt32(Console.ReadLine());
 ProverkaNaTreugolnik(ctotonaA, ctotonaB, ctotonaC);
 */
 //==============================================================================================================================================
-// Задача. Напишите программу, которая будет преобразовывать десятичное число в двоичное.
+// Задача. Напишите программу, которая будет преобразовывать десятичное число в двоичное. Двоичные числа.
 // Вариант 1
 /*
 void PerevodIz10v2(int chisloV10)
@@ -2793,3 +2793,78 @@ for (int i = 0; i < num; i++)
 }
 */
 //================================================================================================================================================
+// Задачи. Семинар 10.
+//==============================================================================================================================================
+// Напишите программу, которая на вход принимает два числа и выдаёт первые N чисел, для которых каждое следующее равно сумме двух предыдущих.
+/*
+int Fibonachi(int startNum1, int startNum2, int size)
+{
+    if (size == 1) return startNum1;
+    if (size == 2) return startNum2;
+    else return Fibonachi(startNum1, startNum2, size - 1) + Fibonachi(startNum1, startNum2, size - 2);
+}
+
+int num1 = 0;
+int num2 = 1;
+int col = 5;
+
+for (int i = 1; i < col; i++)
+{
+    Console.Write(Fibonachi(num1, num2, i) + " ");
+}
+*/
+//====================================================================================================================================
+// В некотором машинном алфавите имеются четыре буквы «а», «и», «с» и «в». Покажите все слова, состоящие из n букв, которые можно построить из букв этого алфавита.
+/*
+void PrintWords(string alf, int lengthWord, string currenWord)
+{
+    if (lengthWord == 0) Console.WriteLine(currenWord);
+    else
+    {
+        for (int i = 0; i < alf.Length; i++)
+        {
+            PrintWords(alf, lengthWord - 1, currenWord + alf[i]);
+        }
+    }
+}
+
+PrintWords("ABC", 3, ""); // или PrintWords("ABC", 3, String.Empty);
+*/
+//=====================================================================================================================================
+// Заданы 2 массива: info b data. В массиве info хранятся двоичные представления нескольких чисел (без разделителя). В массиве data хранится информация о количестве бит, которые занимают числа из массива info. Напишите программу, которая составит массив десятичных представлений чисел массива data с учётом информации из массива info; data = {0,1,1,1,1,0,0,0,1}, info = {2,3,3,1}.
+/*
+int[] data = { 0, 1, 1, 1, 1, 0, 0, 0, 1 };
+int[] info = { 2, 3, 3, 1 };
+int indexNachalaChisla = 0;
+int intdexKonecChesla = 1;
+int cchetchik = 0;
+indexNachalaChisla = 0;
+intdexKonecChesla = 1;
+int ctepen = 0;
+
+double[] newMassiv = new double[info.Length];
+
+while (cchetchik < info.Length)
+{
+    double decyatichnoeChislo = 0;
+    ctepen = 0;
+    for (int i = intdexKonecChesla; i >= indexNachalaChisla; i--)
+    {
+        decyatichnoeChislo = decyatichnoeChislo + (data[i] * Math.Pow(2, ctepen));
+        ctepen++;
+    }
+    newMassiv[cchetchik] = decyatichnoeChislo;
+    cchetchik++;
+    if (cchetchik == 4) break;
+    indexNachalaChisla = intdexKonecChesla + 1;
+    if (cchetchik == 1) intdexKonecChesla = 1;
+    intdexKonecChesla = intdexKonecChesla + info[cchetchik];
+
+}
+
+for (int i = 0; i < newMassiv.Length; i++)
+{
+    Console.Write($"[{newMassiv[i]}] ");
+}
+*/
+//=====================================================================================================================================
