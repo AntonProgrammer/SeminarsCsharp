@@ -450,8 +450,6 @@ Pechat3MernogoMassiva(Cozdanie3MernogoMassiva());
 /*
 int[,] CozdanieMassiva()
 {
-    Random random = new Random();
-
     int[,] massiv = new int[4, 4];
 
     return massiv;
