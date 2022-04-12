@@ -6,8 +6,6 @@ int[] info = { 2, 3, 3, 1 };
 int indexNachalaChisla = 0;
 int intdexKonecChesla = 1;
 int cchetchik = 0;
-indexNachalaChisla = 0;
-intdexKonecChesla = 1;
 int ctepen = 0;
 
 double[] newMassiv = new double[info.Length];
@@ -16,6 +14,7 @@ while (cchetchik < info.Length)
 {
     double decyatichnoeChislo = 0;
     ctepen = 0;
+
     for (int i = intdexKonecChesla; i >= indexNachalaChisla; i--)
     {
         decyatichnoeChislo = decyatichnoeChislo + (data[i] * Math.Pow(2, ctepen));
@@ -27,7 +26,6 @@ while (cchetchik < info.Length)
     indexNachalaChisla = intdexKonecChesla + 1;
     if (cchetchik == 1) intdexKonecChesla = 1;
     intdexKonecChesla = intdexKonecChesla + info[cchetchik];
-
 }
 
 for (int i = 0; i < newMassiv.Length; i++)
