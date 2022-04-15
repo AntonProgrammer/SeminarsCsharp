@@ -2,7 +2,7 @@
 // Задача. Заданы 2 массива: info b data. В массиве info хранятся двоичные представления нескольких чисел (без разделителя). В массиве data хранится информация о количестве бит, которые занимают числа из массива info. Напишите программу, которая составит массив десятичных представлений чисел массива data с учётом информации из массива info; data = {0,1,1,1,1,0,0,0,1}, info = {2,3,3,1}.
 // Сделать для произвольного варианта массива data, когда могут не совпадать размерности массивов и для него не хватает чисел.
 /*
-int[] data = { 0, 1, 1, 1, 1, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1 };
+int[] data = { 0, 1, 1, 1, 1, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1 }; // полный будет int[] data = { 0, 1, 1, 1, 1, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1 };
 int[] info = { 2, 3, 3, 1, 4, 3 };
 int indexNachalaChisla = 0;
 int intdexKonecChesla = 1;
@@ -34,6 +34,11 @@ while (cchetchik < info.Length)
         intdexKonecChesla = intdexKonecChesla + info[cchetchik];
     }
     else break;
+}
+
+if (kolichestvoChiselData < cchetchikKolichestvoChiselData)
+{
+    Console.WriteLine("Откорректируйте содержимое массива data в соответствии с info");
 }
 
 for (int i = 0; i < cchetchik; i++)
