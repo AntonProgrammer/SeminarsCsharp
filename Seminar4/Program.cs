@@ -100,7 +100,7 @@ void SummaCifrChisla(int chisloSummaCifr)
 
     for (int i = 0; i < chisloString.Length; i++)
     {
-        summaCifrChisla = summaCifrChisla + (int)char.GetNumericValue(chisloString,i);
+        summaCifrChisla = summaCifrChisla + Convert.ToInt32($"{chisloString[i]}");  //(int)char.GetNumericValue(chisloString,i) или для массива (int)char.GetNumericValue(chisloString);
     }
 
     Console.WriteLine(summaCifrChisla);
