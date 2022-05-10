@@ -1087,6 +1087,424 @@ MassivDo3Simvolov(massiv1);
 MassivDo3Simvolov(massiv2);
 MassivDo3Simvolov(massiv3);
 */
+// Вариант 3 для сдачи Алексею на русском==============================================================================================
+/*
+int MedodPodcchetaKolichestvaElementovDo3(string[] massiv)
+{
+    int cchetchik = 0;
+
+    for (int i = 0; i < massiv.Length; i++)
+    {
+        if (massiv[i].Length <= 3) cchetchik = cchetchik + 1;
+    }
+
+    return cchetchik;
+}
+
+string[] MetodFormirovaniyaOdnomernogoMassivaDo3Elementov(string[] massiv)
+{
+    string[] newMassiv = new string[MedodPodcchetaKolichestvaElementovDo3(massiv)];
+
+    int j = 0;
+
+    for (int i = 0; i < massiv.Length; i++)
+    {
+        if (massiv[i].Length <= 3) newMassiv[j++] = massiv[i];
+    }
+
+    return newMassiv;
+}
+
+void MetodPechatiMassivaDo3Elementov(string[] massiv)
+{
+    if (massiv.Length == 0) Console.Write("[]");
+
+    for (int i = 0; i < massiv.Length; i++)
+    {
+        if (i == 0 && massiv.Length == 1)
+        {
+            Console.Write("[\"" + massiv[i] + "\"]");
+        }
+        else if (i == 0 && massiv.Length != 1)
+        {
+            Console.Write("[\"" + massiv[i] + "\",");
+        }
+        else if (i == (massiv.Length - 1))
+        {
+            Console.Write("\"" + massiv[i] + "\"]");
+        }
+        else
+        {
+            Console.Write("\"" + massiv[i] + "\",");
+        }
+    }
+
+    Console.WriteLine();
+}
+
+string[] massiv1 = { "hello", "2", "world", ":-)" };
+string[] massiv2 = { "1234", "1567", "-2", "computer science" };
+string[] massiv3 = { "Russia", "Denmark", "Kazan" };
+
+MetodPechatiMassivaDo3Elementov(MetodFormirovaniyaOdnomernogoMassivaDo3Elementov(massiv1));
+MetodPechatiMassivaDo3Elementov(MetodFormirovaniyaOdnomernogoMassivaDo3Elementov(massiv2));
+MetodPechatiMassivaDo3Elementov(MetodFormirovaniyaOdnomernogoMassivaDo3Elementov(massiv3));
+*/
+// Вариант 4 для сдачи Алексею на английском=======================================================================================
+/*
+int CountingMethod(string[] array)
+{
+    int counter = 0;
+
+    for (int i = 0; i < array.Length; i++)
+    {
+        if (array[i].Length <= 3) counter = counter + 1;
+    }
+
+    return counter;
+}
+
+string[] CreateArrayMethod(string[] array)
+{
+    string[] newArray = new string[CountingMethod(array)];
+
+    int j = 0;
+
+    for (int i = 0; i < array.Length; i++)
+    {
+        if (array[i].Length <= 3)
+        {
+            newArray[j] = array[i];
+            j++;
+        } 
+    }
+
+    return newArray;
+}
+
+void PrintArrayMethod(string[] array)
+{
+    if (array.Length == 0) Console.Write("[]");
+
+    for (int i = 0; i < array.Length; i++)
+    {
+        if (i == 0 && array.Length == 1)
+        {
+            Console.Write("[\"" + array[i] + "\"]");
+        }
+        else if (i == 0 && array.Length != 1)
+        {
+            Console.Write("[\"" + array[i] + "\",");
+        }
+        else if (i == (array.Length - 1))
+        {
+            Console.Write("\"" + array[i] + "\"]");
+        }
+        else
+        {
+            Console.Write("\"" + array[i] + "\",");
+        }
+    }
+
+    Console.WriteLine();
+}
+
+string[] array1 = { "hello", "2", "world", ":-)" };
+string[] array2 = { "1234", "1567", "-2", "computer science" };
+string[] array3 = { "Russia", "Denmark", "Kazan" };
+
+PrintArrayMethod(CreateArrayMethod(array1));
+PrintArrayMethod(CreateArrayMethod(array2));
+PrintArrayMethod(CreateArrayMethod(array3));
+*/
+// Вариант 5 для сдачи Алексею на английском оптимальный==============================================================================
+/*
+void PrintArrayMethod(string[] array, int filtrElementsCount)
+{
+    int counterFiltr = 0;
+
+    for (int i = 0; i < array.Length; i++)
+    {
+        if (array[i].Length <= filtrElementsCount)
+        {
+            counterFiltr++;
+
+            if (array.Length == 1 && counterFiltr == 1)
+            {
+                Console.Write("[\"" + array[i] + "\"]");
+            }
+            else if (i == 0 && array.Length != 1 || array.Length != 1 && counterFiltr == 1)
+            {
+                Console.Write("[\"" + array[i] + "\"");
+            }
+            else if (i == (array.Length - 1))
+            {
+                Console.Write(",\"" + array[i] + "\"]");
+            }
+            else
+            {
+                Console.Write(",\"" + array[i] + "\"");
+            }
+        }
+    }
+
+    if (counterFiltr == 1) Console.Write("]");
+    if (array.Length == 0 || counterFiltr == 0) Console.Write("[]");
+    Console.WriteLine();
+}
+
+int filtrElements = 3;
+
+string[] array1 = { "hello", "2", "world", ":-)" };
+string[] array2 = { "1234", "1567", "-2", "computer science" };
+string[] array3 = { "Russia", "Denmark", "Kazan" };
+string[] array4 = { "1262", "17", "1", "9" };
+string[] array5 = { };
+string[] array6 = { "1262", "1712", "1211", "12" };
+
+PrintArrayMethod(array1, filtrElements);
+PrintArrayMethod(array2, filtrElements);
+PrintArrayMethod(array3, filtrElements);
+PrintArrayMethod(array4, filtrElements);
+PrintArrayMethod(array5, filtrElements);
+PrintArrayMethod(array6, filtrElements);
+*/
+// Вариант 6 через зубчатый массив=====================================================================================================
+/*
+int MedodPodcchetaKolichestvaElementovDo3(string[] massiv)
+{
+    int cchetchik = 0;
+
+    for (int i = 0; i < massiv.Length; i++)
+    {
+        if (massiv[i].Length <= 3) cchetchik = cchetchik + 1;
+    }
+
+    return cchetchik;
+}
+
+string[] MetodFormirovaniyaOdnomernogoMassivaDo3Elementov(string[] massiv)
+{
+    string[] massiv3Elementa = new string[MedodPodcchetaKolichestvaElementovDo3(massiv)];
+
+    int j = 0;
+
+    for (int i = 0; i < massiv.Length; i++)
+    {
+        if (massiv[i].Length <= 3) massiv3Elementa[j++] = massiv[i];
+    }
+
+    return massiv3Elementa;
+}
+
+string[][] MetodCozdaniyaMassivaDo3SimvolaZubchatogoIz3Odnomernix(string[] massiv0, string[] massiv1, string[] massiv2, int kolichestvoStrok)
+{
+    string[][] massivDo3ElementaZubchatij = new string[kolichestvoStrok][];
+
+    massivDo3ElementaZubchatij[0] = MetodFormirovaniyaOdnomernogoMassivaDo3Elementov(massiv0); // Вопрос как сделать это в цикле
+    massivDo3ElementaZubchatij[1] = MetodFormirovaniyaOdnomernogoMassivaDo3Elementov(massiv1);
+    massivDo3ElementaZubchatij[2] = MetodFormirovaniyaOdnomernogoMassivaDo3Elementov(massiv2);
+
+    return massivDo3ElementaZubchatij;
+}
+
+void MetodPechatiMassivaDo3ElementovZubchatogo(string[][] massivDo3ElementaZubchatij)
+{
+    for (int i = 0; i < massivDo3ElementaZubchatij.Length; i++)
+    {
+        if (massivDo3ElementaZubchatij[i].Length == 0) Console.Write("[]");
+
+        for (int j = 0; j < massivDo3ElementaZubchatij[i].Length; j++)
+        {
+            if (massivDo3ElementaZubchatij[i].Length == 1) Console.Write($"[\"{massivDo3ElementaZubchatij[i][j]}\"]");
+            else if (j == 0) Console.Write($"[\"{massivDo3ElementaZubchatij[i][j]}\", ");
+            else if (j == massivDo3ElementaZubchatij[i].Length - 1) Console.Write($"\"{massivDo3ElementaZubchatij[i][j]}\"]");
+            else Console.Write($" {massivDo3ElementaZubchatij[i][j]}, ");
+        }
+
+        Console.WriteLine();
+    }
+}
+
+int kolichestvoIsxodnixMassivov = 3;
+
+string[] massiv1 = { "hello", "2", "world", ":-)" };
+string[] massiv2 = { "1234", "1567", "-2", "computer science" };
+string[] massiv3 = { "Russia", "Denmark", "Kazan" };
+
+MetodPechatiMassivaDo3ElementovZubchatogo(MetodCozdaniyaMassivaDo3SimvolaZubchatogoIz3Odnomernix(massiv1, massiv2, massiv3, kolichestvoIsxodnixMassivov));
+*/
+// Вариант 7 зубчатый на английском=====================================================================================================
+/*
+int CountingNumber3Elements(string[] arrayCounting)
+{
+    int counter3Elements = 0;
+
+    for (int i = 0; i < arrayCounting.Length; i++)
+    {
+        if (arrayCounting[i].Length <= 3) counter3Elements++;
+    }
+
+    return counter3Elements;
+}
+
+string[] CreateOneDimensionalArray(string[] arrayInitial)
+{
+    string[] array3Elements = new string[CountingNumber3Elements(arrayInitial)];
+
+    int j = 0;
+
+    for (int i = 0; i < arrayInitial.Length; i++)
+    {
+        if (arrayInitial[i].Length <= 3) array3Elements[j++] = arrayInitial[i];
+    }
+
+    return array3Elements;
+}
+
+string[][] CreateJaggedArray(string[] arrayNum0, string[] arrayNum1, string[] arrayNum2, int countRows)
+{
+    string[][] elements3JaggedArray = new string[countRows][];
+
+    elements3JaggedArray[0] = CreateOneDimensionalArray(arrayNum0);
+    elements3JaggedArray[1] = CreateOneDimensionalArray(arrayNum1);
+    elements3JaggedArray[2] = CreateOneDimensionalArray(arrayNum2);
+
+    return elements3JaggedArray;
+}
+
+void PrintJaggedArray(string[][] elements3PrintJaggedArray)
+{
+    for (int i = 0; i < elements3PrintJaggedArray.Length; i++)
+    {
+        if (elements3PrintJaggedArray[i].Length == 0) Console.Write("[]");
+
+        for (int j = 0; j < elements3PrintJaggedArray[i].Length; j++)
+        {
+            if (elements3PrintJaggedArray[i].Length == 1) Console.Write($"[\"{elements3PrintJaggedArray[i][j]}\"]");
+            else if (j == 0) Console.Write($"[\"{elements3PrintJaggedArray[i][j]}\",");
+            else if (j == elements3PrintJaggedArray[i].Length - 1) Console.Write($"\"{elements3PrintJaggedArray[i][j]}\"]");
+            else Console.Write($"{elements3PrintJaggedArray[i][j]},");
+        }
+
+        Console.WriteLine();
+    }
+}
+
+int numberArrays = 3;
+
+string[] array1 = { "hello", "2", "world", ":-)" };
+string[] array2 = { "1234", "1567", "-2", "computer science" };
+string[] array3 = { "Russia", "Denmark", "Kazan" };
+
+PrintJaggedArray(CreateJaggedArray(array1, array2, array3, numberArrays));
+*/
+// Вариант 8 зубчатый на английском оптимальный===========================================================================================
+/*
+void PrintJaggedArray(string[][] elementsPrintJaggedArray, int sizeFiltrElements)
+{
+    for (int i = 0; i < elementsPrintJaggedArray.Length; i++)
+    {
+        int counterFiltrElements = 0;
+        
+        Console.Write("[");
+
+        for (int j = 0; j < elementsPrintJaggedArray[i].Length; j++)
+        {
+            if (elementsPrintJaggedArray[i][j].Length <= sizeFiltrElements)
+            {
+                counterFiltrElements++;
+
+                if (elementsPrintJaggedArray[i].Length == 1 || counterFiltrElements == 1) Console.Write($"\"{elementsPrintJaggedArray[i][j]}\"");
+                else if (j == elementsPrintJaggedArray[i].Length - 1) Console.Write($",\"{elementsPrintJaggedArray[i][j]}\"");
+                     else Console.Write($",\"{elementsPrintJaggedArray[i][j]}\"");
+            }
+        }
+        Console.Write("]");
+        Console.WriteLine();
+    }
+}
+
+int sizeRowsArray = 3;
+int sizeFiltrElementsArray = 3;
+
+string[][] elementsJaggedArray = new string[sizeRowsArray][];
+
+elementsJaggedArray[0] = new string[] { "hello", "2", "world", ":-)" };
+elementsJaggedArray[1] = new string[] { "1234", "1567", "-2", "computer science" };
+elementsJaggedArray[2] = new string[] { "Russia", "Denmark", "Kazan" };
+
+PrintJaggedArray(elementsJaggedArray, sizeFiltrElementsArray);
+*/
+// Вариант 9 зубчатый на английском с динамическими параметрами=====================================================================================================
+/*
+int CountingNumber3Elements(string[] arrayCounting)
+{
+    int counter3Elements = 0;
+
+    for (int i = 0; i < arrayCounting.Length; i++)
+    {
+        if (arrayCounting[i].Length <= 3) counter3Elements++;
+    }
+
+    return counter3Elements;
+}
+
+string[] CreateOneDimensionalArray(string[] arrayInitial)
+{
+    string[] array3Elements = new string[CountingNumber3Elements(arrayInitial)];
+
+    int j = 0;
+
+    for (int i = 0; i < arrayInitial.Length; i++)
+    {
+        if (arrayInitial[i].Length <= 3) array3Elements[j++] = arrayInitial[i];
+    }
+
+    return array3Elements;
+}
+
+string[][] CreateJaggedArray(int countRows, params string[][] arrayNum)
+{
+    string[][] elements3JaggedArray = new string[countRows][];
+    
+    for (int i = 0; i < countRows; i++)
+    {
+        elements3JaggedArray[i] = CreateOneDimensionalArray(arrayNum[i]); // если передаём одномерный, то индекс не нужнен
+    }
+
+    return elements3JaggedArray;
+}
+
+void PrintJaggedArray(string[][] elements3PrintJaggedArray)
+{
+    for (int i = 0; i < elements3PrintJaggedArray.Length; i++)
+    {
+        if (elements3PrintJaggedArray[i].Length == 0) Console.Write("[]");
+
+        for (int j = 0; j < elements3PrintJaggedArray[i].Length; j++)
+        {
+            if (elements3PrintJaggedArray[i].Length == 1) Console.Write($"[\"{elements3PrintJaggedArray[i][j]}\"]");
+            else if (j == 0) Console.Write($"[\"{elements3PrintJaggedArray[i][j]}\",");
+            else if (j == elements3PrintJaggedArray[i].Length - 1) Console.Write($"\"{elements3PrintJaggedArray[i][j]}\"]");
+            else Console.Write($"{elements3PrintJaggedArray[i][j]},");
+        }
+
+        Console.WriteLine();
+    }
+}
+
+int numberArrays = 6;
+
+string[] array1 = { "hello", "2", "world", ":-)" };
+string[] array2 = { "1234", "1567", "-2", "computer science" };
+string[] array3 = { "Russia", "Denmark", "Kazan" };
+string[] array4 = { "Russ11212ia", "Denma121rk", "Kaz121an" };
+string[] array5 = { "Russ11212ia", "Denma121rk", "Kaz121an", "123" };
+string[] array6 = { "Russ11212ia", "17", "Kaz121an", "123" };
+
+PrintJaggedArray(CreateJaggedArray(numberArrays, array1, array2, array3, array4, array5, array6));
+*/
 //======================================================================================================================================
 // Задачи с семинара 6.
 //================================================================================================================================================
